@@ -79,7 +79,7 @@
 <style>
 :root{
   --bg:#ffffff; --surface:#f6f8fa; --surface-2:#eef2f6; --border:#d8dee6;
-  --text:#11181c; --muted:#5b6b7a; --accent:#1769aa; --accent-soft:#e3f0fa;
+  --text:#11181c; --muted:#4a5a69; --accent:#1769aa; --accent-soft:#e3f0fa;
   --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
   --radius:14px; --maxw:1080px;
   --font:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
@@ -88,13 +88,13 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#0d1117; --surface:#161b22; --surface-2:#1c232c; --border:#2b3440;
-    --text:#e6edf3; --muted:#9bacbd; --accent:#58a6ff; --accent-soft:#132b45;
+    --text:#e6edf3; --muted:#a9bac9; --accent:#58a6ff; --accent-soft:#132b45;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   }
 }
 :root[data-theme="dark"]{
   --bg:#0d1117; --surface:#161b22; --surface-2:#1c232c; --border:#2b3440;
-  --text:#e6edf3; --muted:#9bacbd; --accent:#58a6ff; --accent-soft:#132b45;
+  --text:#e6edf3; --muted:#a9bac9; --accent:#58a6ff; --accent-soft:#132b45;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
@@ -158,7 +158,7 @@ h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.12;margin:0 0 10px;letter-spac
   position:relative;width:210px;height:210px;border-radius:50%;object-fit:cover;
   border:4px solid var(--bg);box-shadow:0 0 0 1px var(--border),var(--shadow);
 }
-.facts{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:.88rem;color:var(--muted)}
+.facts{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;font-size:.92rem;color:var(--muted)}
 .facts span{display:inline-flex;align-items:center;gap:6px}
 
 /* ---------- sections ---------- */
@@ -171,7 +171,7 @@ h2{font-size:clamp(1.5rem,3.4vw,2.05rem);margin:0 0 8px;letter-spacing:-.03em;fo
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
 .stat b{display:block;font-size:1.75rem;line-height:1.1;letter-spacing:-.02em}
-.stat small{color:var(--muted);font-size:.84rem}
+.stat small{color:var(--muted);font-size:.88rem;line-height:1.5}
 
 /* ---------- timeline ---------- */
 .tl{position:relative;padding-inline-start:26px}
@@ -189,7 +189,7 @@ h2{font-size:clamp(1.5rem,3.4vw,2.05rem);margin:0 0 8px;letter-spacing:-.03em;fo
   margin-inline-start:auto;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums;
   background:var(--surface);border:1px solid var(--border);padding:2px 9px;border-radius:999px;
 }
-.job ul{margin:10px 0 0;padding-inline-start:18px;color:var(--muted);font-size:.92rem}
+.job ul{margin:10px 0 0;padding-inline-start:18px;color:var(--muted);font-size:.95rem}
 .job li{margin-bottom:8px}
 .job li b{color:var(--text);font-weight:600}
 
@@ -218,7 +218,7 @@ h2{font-size:clamp(1.5rem,3.4vw,2.05rem);margin:0 0 8px;letter-spacing:-.03em;fo
 .badge.live{background:#0a7d3f1a;color:#0a7d3f}
 :root[data-theme="dark"] .badge.live,
 :root:not([data-theme="light"]) .badge.live{background:#2ea04326;color:#3fb950}
-.card p{margin:0;color:var(--muted);font-size:.9rem;flex:1}
+.card p{margin:0;color:var(--muted);font-size:.93rem;line-height:1.65}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{
   font-size:.74rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -231,25 +231,40 @@ h2{font-size:clamp(1.5rem,3.4vw,2.05rem);margin:0 0 8px;letter-spacing:-.03em;fo
   font-size:.76rem;font-weight:600;color:var(--accent);background:var(--accent-soft);
   padding:3px 9px;border-radius:999px;white-space:nowrap;
 }
-.card-links{display:flex;gap:14px;font-size:.85rem;font-weight:600}
+.card-links{display:flex;gap:14px;font-size:.88rem;font-weight:600;align-items:center;flex-wrap:wrap}
+.card-links a::after{content:""}
+/* private work has no public URL; say so rather than leave a dead row */
+.closed{
+  display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;
+  color:var(--muted);background:var(--surface-2);border:1px solid var(--border);
+  padding:4px 11px;border-radius:999px;
+}
 
 /* ---------- skills ---------- */
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
 .skill-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-.skill-box h3{margin:0 0 10px;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.skill-box h3{margin:0 0 12px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.skill-box .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;font-size:.78rem}
+.skill-box .tag img{flex:none;border-radius:2px}
+/* the brand marks are dark-on-dark otherwise */
+:root[data-theme="dark"] .skill-box .tag img,
+:root:not([data-theme="light"]) .skill-box .tag img{filter:brightness(0) invert(1) opacity(.82)}
 
 /* ---------- certs ---------- */
-.cert-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.cert-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:12px}
 .cert{
-  background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 16px;
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px 16px;
+  display:flex;flex-direction:column;gap:3px;
+  transition:border-color .18s ease,transform .18s ease;
 }
-.cert b{font-size:.92rem;font-weight:600}
-.cert small{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cert:hover{border-color:var(--accent);transform:translateY(-2px)}
+.cert b{font-size:.95rem;font-weight:600;line-height:1.4}
+.cert .issuer{color:var(--muted);font-size:.82rem}
+.cert small{color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums;margin-top:4px}
 
 /* ---------- contact ---------- */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.contact-list{display:flex;flex-direction:column;gap:11px;margin:0;padding:0;list-style:none}
+.contact-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:32px;align-items:start}
+.contact-list{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
 .contact-list a{
   display:flex;align-items:center;gap:11px;background:var(--surface);
   border:1px solid var(--border);border-radius:11px;padding:13px 15px;color:var(--text);font-weight:500;
@@ -260,34 +275,42 @@ h2{font-size:clamp(1.5rem,3.4vw,2.05rem);margin:0 0 8px;letter-spacing:-.03em;fo
   display:grid;place-items:center;font-size:.95rem;
 }
 .contact-list small{display:block;color:var(--muted);font-size:.78rem;font-weight:400}
-form{display:flex;flex-direction:column;gap:11px}
+form{display:flex;flex-direction:column;gap:13px}
+form > div{display:flex;flex-direction:column;gap:5px}
+/* a submit button as wide as the form looked like a banner */
+form .btn{align-self:flex-start;padding:11px 26px}
 label{font-size:.82rem;font-weight:600;color:var(--muted)}
 input,textarea{
   width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--border);
   background:var(--bg);color:var(--text);font-family:inherit;font-size:.93rem;
 }
 input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
-textarea{resize:vertical;min-height:112px}
+textarea{resize:vertical;min-height:124px}
 .form-note{font-size:.8rem;color:var(--muted);margin:0}
 .form-status{font-size:.87rem;font-weight:600;margin:0;min-height:20px}
 
-footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
+footer{padding:34px 0;color:var(--muted);font-size:.9rem;text-align:center;line-height:1.7}
+footer p{margin:0}
 
 /* ---------- screenshot strip ---------- */
 /* the strip scrolls; the fade on the trailing edge says so */
 .shots-wrap{position:relative}
 .shots-wrap::after{
-  content:"";position:absolute;inset-block:0;inset-inline-end:0;width:46px;pointer-events:none;
+  content:"";position:absolute;inset-block:0;inset-inline-end:-2px;width:52px;pointer-events:none;
   background:linear-gradient(to left,var(--surface),transparent);
 }
 html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--surface),transparent)}
-.shots{display:flex;gap:10px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:thin;scroll-snap-type:x mandatory}
+.shots{display:flex;gap:14px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:thin;scroll-snap-type:x mandatory}
 .shots img{scroll-snap-align:start}
+/* a slim device frame so the screenshots read as a phone, not a stray image */
 .shots img{
-  height:230px;width:auto;border-radius:10px;border:1px solid var(--border);
-  cursor:zoom-in;flex:none;background:var(--surface-2);
+  height:288px;width:auto;flex:none;cursor:zoom-in;background:var(--surface-2);
+  border-radius:17px;border:5px solid #11181c;box-shadow:0 2px 10px rgba(16,24,40,.18);
+  transition:transform .18s ease,box-shadow .18s ease;
 }
-.shots img:hover{border-color:var(--accent)}
+:root[data-theme="dark"] .shots img,
+:root:not([data-theme="light"]) .shots img{border-color:#2b3440}
+.shots img:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(16,24,40,.26)}
 .app-icon{width:30px;height:30px;border-radius:7px;vertical-align:middle;border:1px solid var(--border)}
 
 /* ---------- lightbox ---------- */
@@ -304,13 +327,17 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
 /* ---------- store badges ---------- */
 .store-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 .store-badge{
-  display:inline-flex;align-items:center;gap:9px;padding:8px 15px;border-radius:10px;
-  background:var(--surface);border:1px solid var(--border);color:var(--text);
-  font-size:.82rem;font-weight:600;line-height:1.25;
+  display:inline-flex;align-items:center;gap:10px;padding:9px 17px;border-radius:11px;
+  background:#11181c;border:1px solid #11181c;color:#fff;
+  font-size:.88rem;font-weight:700;line-height:1.2;
+  transition:transform .16s ease,box-shadow .16s ease;
 }
-.store-badge:hover{background:var(--surface-2);border-color:var(--accent);text-decoration:none}
-.store-badge small{display:block;font-size:.66rem;font-weight:500;color:var(--muted)}
-.store-badge svg{width:19px;height:19px;flex:none;fill:currentColor}
+:root[data-theme="dark"] .store-badge,
+:root:not([data-theme="light"]) .store-badge{background:#1c232c;border-color:#39424d}
+.store-badge:hover{transform:translateY(-2px);box-shadow:var(--shadow);text-decoration:none;color:#fff}
+.store-badge small{display:block;font-size:.68rem;font-weight:500;opacity:.78}
+.store-badge svg{width:21px;height:21px;flex:none;fill:currentColor}
+.store-badge .ext{font-size:.8rem;opacity:.6;margin-inline-start:2px}
 
 /* ---------- scroll reveal ---------- */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
@@ -341,7 +368,7 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
   .nav-links a + a{border-top:1px solid var(--border)}
   header.nav{position:sticky}
   .nav-in{position:relative;flex-wrap:wrap}
-  .shots img{height:190px}
+  .shots img{height:236px;border-width:4px}
 }
 [hidden]{display:none !important}
 </style>
@@ -387,11 +414,11 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
       <div class="store-row">
         <a class="store-badge" href="https://apps.apple.com/sa/app/id6771451344" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.8c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.8.7c1.2 0 1.9-1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.4s-2.3-.9-2.3-3.4zM14.2 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg>
-          <span><small data-en="Download on the" data-ar="حمّله من">Download on the</small>App Store</span>
+          <span><small data-en="Download on the" data-ar="حمّله من">Download on the</small>App Store</span><span class="ext">↗</span>
         </a>
         <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.monafiss.market" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.4c-.3.3-.5.8-.5 1.4v16.4c0 .6.2 1.1.5 1.4l.1.1 9.2-9.2v-.2L3.6 2.4zM16.1 15.6l-3.1-3.1v-.2l3.1-3.1.1.1 3.6 2.1c1 .6 1 1.6 0 2.2l-3.7 2zM15.9 15.8L12.8 12.6 3.6 21.8c.3.4.9.4 1.5 0l10.8-6zM15.9 8.2L5.1 2.2c-.6-.4-1.2-.3-1.5 0l9.2 9.2 3.1-3.2z"/></svg>
-          <span><small data-en="Get it on" data-ar="احصل عليه من">Get it on</small>Google Play</span>
+          <span><small data-en="Get it on" data-ar="احصل عليه من">Get it on</small>Google Play</span><span class="ext">↗</span>
         </a>
       </div>
       <div class="facts">
@@ -488,7 +515,6 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
     </div>
 
     <div class="grid" id="projectGrid">
-
       <article class="card" data-cat="mobile">
         <h3><img class="app-icon" src="assets/shots/market-icon.png" alt="" loading="lazy" width="64" height="64" /><span data-en="Monafiss Market — Customer App" data-ar="منافس ماركت — تطبيق العميل">Monafiss Market — Customer App</span>
             <span class="badge live" data-en="App Store · Google Play" data-ar="App Store · Google Play">App Store · Google Play</span></h3>
@@ -514,7 +540,6 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
           <a href="https://play.google.com/store/apps/details?id=com.monafiss.market" target="_blank" rel="noopener">Google Play ↗</a>
         </div>
       </article>
-
       <article class="card" data-cat="mobile">
         <h3><img class="app-icon" src="assets/shots/driver-icon.png" alt="" loading="lazy" width="64" height="64" /><span data-en="Monafiss Driver" data-ar="منافس سواق">Monafiss Driver</span>
             <span class="badge live" data-en="Published" data-ar="منشور">Published</span></h3>
@@ -531,55 +556,6 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
           <a href="https://play.google.com/store/apps/details?id=com.monafiss.driver" target="_blank" rel="noopener">Google Play ↗</a>
         </div>
       </article>
-
-      <article class="card" data-cat="mobile backend">
-        <h3><span data-en="Monafiss Fulfillment — Picker App" data-ar="منافس — تطبيق المجهّز">Monafiss Fulfillment — Picker App</span></h3>
-        <p data-en="The in-store picking app plus its own Express and Socket.IO backend. Built on a clean architecture layer (get_it, injectable, freezed) with barcode scanning, haptic feedback and a screen that stays awake while a picker works an order."
-           data-ar="تطبيق تجهيز الطلبات داخل المتجر مع خادمه الخاص المبني على Express و Socket.IO. مبني بمعمارية نظيفة (get_it و injectable و freezed) مع مسح الباركود واهتزاز تأكيدي وشاشة تبقى مضاءة أثناء تجهيز المجهّز للطلب.">In-store picking app with its own realtime backend.</p>
-        <div class="tags"><span class="tag">Flutter</span><span class="tag">Express</span><span class="tag">Socket.IO</span><span class="tag">Clean Architecture</span></div>
-      </article>
-
-      <article class="card" data-cat="mobile">
-        <h3><span data-en="Roeya — Manager Reporting App" data-ar="رؤية — تطبيق تقارير المدراء">Roeya — Manager Reporting App</span>
-            <span class="badge live" data-en="Internal release" data-ar="إصدار داخلي">Internal release</span></h3>
-        <p data-en="Published for company managers only and distributed by private link rather than the public stores. Surfaces live business analytics as charts, exports and prints PDF reports, unlocks with biometrics, carries its own AI module and puts a summary widget on the manager's home screen."
-           data-ar="منشور لمدراء الشركة فقط ويوزَّع عبر رابط خاص بدل المتاجر العامة. يعرض تحليلات العمل اللحظية كرسوم بيانية، ويصدّر ويطبع تقارير PDF، ويُفتح ببصمة، ويحمل وحدة ذكاء اصطناعي خاصة به، ويضع ودجت ملخّص على شاشة المدير الرئيسية.">Live analytics, PDF reports, biometrics and a home widget.</p>
-        <div class="tags"><span class="tag">Flutter</span><span class="tag">fl_chart</span><span class="tag">PDF</span><span class="tag">Biometrics</span></div>
-      </article>
-
-      <article class="card" data-cat="backend web">
-        <h3><span data-en="Monafiss Platform — Backend &amp; Dashboard" data-ar="منصة منافس — الباكند ولوحة التحكم">Monafiss Platform — Backend &amp; Dashboard</span>
-            <span class="badge" data-en="72 modules" data-ar="72 وحدة">72 modules</span></h3>
-        <p data-en="The system every Monafiss app runs on: a NestJS and Prisma backend of 72 modules over 105 data models, paired with a Next.js operations dashboard. Covers warehouse management, delivery zones and ETA, loyalty, abandoned carts, returns, refunds, wallets, voice calls and two AI assistants — running on Redis, Firebase and object storage, with Sentry and New Relic watching production."
-           data-ar="النظام الذي تعمل عليه كل تطبيقات منافس: خادم NestJS و Prisma بـ 72 وحدة فوق 105 نماذج بيانات، مع لوحة تحكم تشغيلية بـ Next.js. يغطي إدارة المستودعات ومناطق التوصيل ووقت الوصول المتوقّع والولاء والسلّات المتروكة والمرتجعات والاستردادات والمحافظ والمكالمات الصوتية ومساعدَي ذكاء اصطناعي — ويعمل على Redis و Firebase والتخزين السحابي، مع مراقبة Sentry و New Relic للإنتاج.">NestJS backend of 72 modules over 105 data models.</p>
-        <div class="tags"><span class="tag">NestJS</span><span class="tag">Prisma</span><span class="tag">Next.js</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span></div>
-        <div class="card-links">
-          <a href="monafiss.html" data-en="Read the case study →" data-ar="اقرأ دراسة الحالة ←">Read the case study →</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="backend">
-        <h3><span data-en="ERP Synchronization Service" data-ar="خدمة مزامنة ERP">ERP Synchronization Service</span></h3>
-        <p data-en="Moves offers, prices and inventory from the company's SQL Server ERP into the apps' PostgreSQL on a configurable schedule, per branch. A Next.js middle layer validates every batch against business rules, flags dangerous changes for manual review before they reach customers, and switches promotions on and off automatically."
-           data-ar="ينقل العروض والأسعار والمخزون من نظام ERP على SQL Server إلى PostgreSQL الخاص بالتطبيقات وفق جدول قابل للضبط ولكل فرع. طبقة وسيطة بـ Next.js تتحقق من كل دفعة مقابل قواعد العمل، وتعلّم التغيّرات الخطيرة للمراجعة اليدوية قبل وصولها للعملاء، وتفعّل العروض وتوقفها تلقائياً.">SQL Server to PostgreSQL sync with guarded review.</p>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span></div>
-      </article>
-
-      <article class="card" data-cat="backend">
-        <h3><span data-en="Accounting, HR &amp; Payroll System" data-ar="نظام المحاسبة والموارد البشرية والرواتب">Accounting, HR &amp; Payroll System</span></h3>
-        <p data-en="A four-service system — accounting, HR, reporting and AI — covering the sales and purchase cycle, stock movements posted to the general ledger, a pricing engine and payroll. Reads attendance straight off ZKTeco fingerprint terminals, and ships with Docker Compose, an API gateway and Prometheus monitoring."
-           data-ar="نظام من أربع خدمات — محاسبة وموارد بشرية وتقارير وذكاء اصطناعي — يغطي دورة المبيعات والمشتريات، وحركات المخزون المرحّلة إلى دفتر الأستاذ العام، ومحرّك تسعير، ونظام رواتب. يقرأ الحضور مباشرة من أجهزة البصمة ZKTeco، ويأتي مع Docker Compose وبوابة واجهات ومراقبة Prometheus.">Four services covering accounting, HR, reporting and AI.</p>
-        <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">ZKTeco</span><span class="tag">Prometheus</span></div>
-      </article>
-
-      <article class="card" data-cat="backend web">
-        <h3><span data-en="IT Support System" data-ar="نظام الدعم التقني">IT Support System</span>
-            <span class="badge" data-en="In development" data-ar="قيد التطوير">In development</span></h3>
-        <p data-en="An internal ticketing system that replaces a scattered IT desk with one channel. Requests are filed through a three-level tree — system, component, problem type — where every leaf has its own dynamic form with required fields, so an incomplete ticket is rejected before a technician ever reads it. Adds business-hours SLA deadlines with early warning and automatic escalation, per-employee daily request limits, custom roles scoped to specific systems, a full timeline on every ticket, and management reports on recurring problems, technician performance and SLA compliance. 24 API modules over 49 data models."
-           data-ar="نظام تذاكر داخلي يستبدل شتات قسم الـ IT بقناة واحدة منظّمة. تُقدَّم الطلبات عبر شجرة ثلاثية — نظام ثم جزء ثم نوع المشكلة — ولكل ورقة نموذجها الديناميكي بحقول إجبارية، فالطلب الناقص يُرفض قبل أن يقرأه الفني أصلاً. ويضيف مواعيد SLA محسوبة على ساعات العمل مع تنبيه مبكر وتصعيد تلقائي، وحدوداً يومية للطلبات لكل موظف، وأدواراً مخصصة بنطاق أنظمة محدد، وسجلاً زمنياً لكل تذكرة، وتقارير إدارية عن المشاكل المتكررة وأداء الفنيين والالتزام بالـ SLA. 24 وحدة واجهة فوق 49 نموذج بيانات.">Internal IT ticketing with dynamic forms, SLA and escalation.</p>
-        <div class="tags"><span class="tag">NestJS 11</span><span class="tag">Prisma 6</span><span class="tag">Next.js 15</span><span class="tag">PostgreSQL 17</span><span class="tag">Docker</span></div>
-      </article>
-
       <article class="card" data-cat="mobile backend web">
         <h3><img class="app-icon" src="assets/shots/lahza-icon.png" alt="" loading="lazy" width="64" height="64" />
             <span data-en="Lahza Etar — 3D-Print Store" data-ar="لحظة إطار — متجر الطباعة ثلاثية الأبعاد">Lahza Etar — 3D-Print Store</span>
@@ -606,18 +582,76 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
           <a href="https://lahzat.etar-app.com/shop" target="_blank" rel="noopener" data-en="Live storefront ↗" data-ar="المتجر المباشر ↗">Live storefront ↗</a>
         </div>
       </article>
-
+      <article class="card" data-cat="mobile backend">
+        <h3><span data-en="Monafiss Fulfillment — Picker App" data-ar="منافس — تطبيق المجهّز">Monafiss Fulfillment — Picker App</span></h3>
+        <p data-en="The in-store picking app plus its own Express and Socket.IO backend. Built on a clean architecture layer (get_it, injectable, freezed) with barcode scanning, haptic feedback and a screen that stays awake while a picker works an order."
+           data-ar="تطبيق تجهيز الطلبات داخل المتجر مع خادمه الخاص المبني على Express و Socket.IO. مبني بمعمارية نظيفة (get_it و injectable و freezed) مع مسح الباركود واهتزاز تأكيدي وشاشة تبقى مضاءة أثناء تجهيز المجهّز للطلب.">In-store picking app with its own realtime backend.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Express</span><span class="tag">Socket.IO</span><span class="tag">Clean Architecture</span></div>
+        <div class="card-links"><span class="closed">🔒 <span data-en="Internal tool · not public" data-ar="أداة داخلية · غير عامة">Internal tool · not public</span></span></div>
+      </article>
+      <article class="card" data-cat="mobile">
+        <h3><span data-en="Roeya — Manager Reporting App" data-ar="رؤية — تطبيق تقارير المدراء">Roeya — Manager Reporting App</span>
+            <span class="badge live" data-en="Internal release" data-ar="إصدار داخلي">Internal release</span></h3>
+        <p data-en="Published for company managers only and distributed by private link rather than the public stores. Surfaces live business analytics as charts, exports and prints PDF reports, unlocks with biometrics, carries its own AI module and puts a summary widget on the manager's home screen."
+           data-ar="منشور لمدراء الشركة فقط ويوزَّع عبر رابط خاص بدل المتاجر العامة. يعرض تحليلات العمل اللحظية كرسوم بيانية، ويصدّر ويطبع تقارير PDF، ويُفتح ببصمة، ويحمل وحدة ذكاء اصطناعي خاصة به، ويضع ودجت ملخّص على شاشة المدير الرئيسية.">Live analytics, PDF reports, biometrics and a home widget.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">fl_chart</span><span class="tag">PDF</span><span class="tag">Biometrics</span></div>
+        <div class="card-links"><span class="closed">🔒 <span data-en="Private distribution" data-ar="توزيع خاص">Private distribution</span></span></div>
+      </article>
+      <article class="card" data-cat="backend web">
+        <h3><span data-en="Monafiss Platform — Backend &amp; Dashboard" data-ar="منصة منافس — الباكند ولوحة التحكم">Monafiss Platform — Backend &amp; Dashboard</span>
+            <span class="badge" data-en="72 modules" data-ar="72 وحدة">72 modules</span></h3>
+        <p data-en="The system every Monafiss app runs on: a NestJS and Prisma backend of 72 modules over 105 data models, paired with a Next.js operations dashboard. Covers warehouse management, delivery zones and ETA, loyalty, abandoned carts, returns, refunds, wallets, voice calls and two AI assistants — running on Redis, Firebase and object storage, with Sentry and New Relic watching production."
+           data-ar="النظام الذي تعمل عليه كل تطبيقات منافس: خادم NestJS و Prisma بـ 72 وحدة فوق 105 نماذج بيانات، مع لوحة تحكم تشغيلية بـ Next.js. يغطي إدارة المستودعات ومناطق التوصيل ووقت الوصول المتوقّع والولاء والسلّات المتروكة والمرتجعات والاستردادات والمحافظ والمكالمات الصوتية ومساعدَي ذكاء اصطناعي — ويعمل على Redis و Firebase والتخزين السحابي، مع مراقبة Sentry و New Relic للإنتاج.">NestJS backend of 72 modules over 105 data models.</p>
+        <div class="tags"><span class="tag">NestJS</span><span class="tag">Prisma</span><span class="tag">Next.js</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span></div>
+        <div class="card-links">
+          <a href="monafiss.html" data-en="Read the case study →" data-ar="اقرأ دراسة الحالة ←">Read the case study →</a>
+        </div>
+      </article>
+      <article class="card" data-cat="backend">
+        <h3><span data-en="ERP Synchronization Service" data-ar="خدمة مزامنة ERP">ERP Synchronization Service</span></h3>
+        <p data-en="Moves offers, prices and inventory from the company's SQL Server ERP into the apps' PostgreSQL on a configurable schedule, per branch. A Next.js middle layer validates every batch against business rules, flags dangerous changes for manual review before they reach customers, and switches promotions on and off automatically."
+           data-ar="ينقل العروض والأسعار والمخزون من نظام ERP على SQL Server إلى PostgreSQL الخاص بالتطبيقات وفق جدول قابل للضبط ولكل فرع. طبقة وسيطة بـ Next.js تتحقق من كل دفعة مقابل قواعد العمل، وتعلّم التغيّرات الخطيرة للمراجعة اليدوية قبل وصولها للعملاء، وتفعّل العروض وتوقفها تلقائياً.">SQL Server to PostgreSQL sync with guarded review.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span></div>
+        <div class="card-links"><span class="closed">🔒 <span data-en="Private company system" data-ar="نظام خاص بالشركة">Private company system</span></span></div>
+      </article>
+      <article class="card" data-cat="backend">
+        <h3><span data-en="Accounting, HR &amp; Payroll System" data-ar="نظام المحاسبة والموارد البشرية والرواتب">Accounting, HR &amp; Payroll System</span></h3>
+        <p data-en="A four-service system — accounting, HR, reporting and AI — covering the sales and purchase cycle, stock movements posted to the general ledger, a pricing engine and payroll. Reads attendance straight off ZKTeco fingerprint terminals, and ships with Docker Compose, an API gateway and Prometheus monitoring."
+           data-ar="نظام من أربع خدمات — محاسبة وموارد بشرية وتقارير وذكاء اصطناعي — يغطي دورة المبيعات والمشتريات، وحركات المخزون المرحّلة إلى دفتر الأستاذ العام، ومحرّك تسعير، ونظام رواتب. يقرأ الحضور مباشرة من أجهزة البصمة ZKTeco، ويأتي مع Docker Compose وبوابة واجهات ومراقبة Prometheus.">Four services covering accounting, HR, reporting and AI.</p>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">ZKTeco</span><span class="tag">Prometheus</span></div>
+        <div class="card-links"><span class="closed">🔒 <span data-en="Private company system" data-ar="نظام خاص بالشركة">Private company system</span></span></div>
+      </article>
+      <article class="card" data-cat="backend web">
+        <h3><span data-en="IT Support System" data-ar="نظام الدعم التقني">IT Support System</span>
+            <span class="badge" data-en="In development" data-ar="قيد التطوير">In development</span></h3>
+        <p data-en="An internal ticketing system that replaces a scattered IT desk with one channel. Requests are filed through a three-level tree, where each leaf has its own form with required fields — so an incomplete ticket is rejected before a technician ever reads it."
+           data-ar="نظام تذاكر داخلي يستبدل شتات قسم الـ IT بقناة واحدة منظّمة. تُقدَّم الطلبات عبر شجرة ثلاثية، ولكل ورقة نموذجها بحقول إجبارية — فالطلب الناقص يُرفض قبل أن يقرأه الفني أصلاً.">Internal IT ticketing with dynamic forms, SLA and escalation.</p>
+        <div class="feats">
+          <span class="feat" data-en="Business-hours SLA" data-ar="SLA بساعات العمل">Business-hours SLA</span>
+          <span class="feat" data-en="Auto escalation" data-ar="تصعيد تلقائي">Auto escalation</span>
+          <span class="feat" data-en="Scoped roles" data-ar="أدوار بنطاق محدد">Scoped roles</span>
+          <span class="feat" data-en="24 modules · 49 models" data-ar="24 وحدة · 49 نموذج">24 modules · 49 models</span>
+        </div>
+        <div class="tags"><span class="tag">NestJS 11</span><span class="tag">Prisma 6</span><span class="tag">Next.js 15</span><span class="tag">PostgreSQL 17</span><span class="tag">Docker</span></div>
+        <div class="card-links"><span class="closed">🔒 <span data-en="In development" data-ar="قيد التطوير">In development</span></span></div>
+      </article>
       <article class="card" data-cat="ai backend">
         <h3><span data-en="Rona — AI Personal Assistant" data-ar="رونا — السكرتيرة الذكية">Rona — AI Personal Assistant</span>
             <span class="badge" data-en="TestFlight" data-ar="TestFlight">TestFlight</span></h3>
-        <p data-en="An autonomous assistant that lives inside WhatsApp and answers in plain Arabic, with an iOS companion app on TestFlight. It does not just reply — it acts: books appointments, answers email, scans job listings against my criteria and drafts proposals for freelance work. Because it acts, it sits on a permission engine of 100 policies that decides what it may do alone and what needs my approval. 21k lines of TypeScript, 83 tools, 42 security tests. The rule it runs on: Rona writes, Rona never sends — anything leaving for a third party waits for me, and untrusted text is read by a tool-less model so a prompt hidden in a job ad can spoil a summary but never send mail in my name."
-           data-ar="مساعدة ذاتية تعيش داخل الواتساب وتردّ بالعربية الدارجة، مع تطبيق آيفون مرافق على TestFlight. لا تكتفي بالردّ بل تتصرّف: تحجز المواعيد، وتردّ على البريد، وتمسح إعلانات الوظائف وفق شروطي، وتكتب عروضاً للعمل الحر. ولأنها تتصرّف، بُني تحتها محرّك صلاحيات من 100 سياسة يقرّر ما تفعله وحدها وما يحتاج موافقتي. 21 ألف سطر TypeScript، و83 أداة، و42 اختباراً أمنياً. القاعدة التي تحكمها: رونا تكتب ولا ترسل — كل ما يخرج لطرف خارجي ينتظرني، والنص غير الموثوق يُقرأ بنموذج بلا أدوات، فتعليمة مخفية في إعلان وظيفة قد تفسد ملخّصاً لكنها لا ترسل بريداً باسمي.">Autonomous WhatsApp assistant with a 100-policy permission engine.</p>
+        <p data-en="An autonomous assistant that lives inside WhatsApp and answers in plain Arabic, with an iOS companion app. It does not just reply — it acts, so it sits on a permission engine that decides what runs alone and what waits for my approval."
+           data-ar="مساعدة ذاتية تعيش داخل الواتساب وتردّ بالعربية الدارجة، مع تطبيق آيفون مرافق. لا تكتفي بالردّ بل تتصرّف، ولذلك بُني تحتها محرّك صلاحيات يقرّر ما يعمل وحده وما ينتظر موافقتي.">Autonomous WhatsApp assistant with a 100-policy permission engine.</p>
+        <div class="feats">
+          <span class="feat" data-en="Writes, never sends" data-ar="تكتب ولا ترسل">Writes, never sends</span>
+          <span class="feat" data-en="100 policies" data-ar="100 سياسة">100 policies</span>
+          <span class="feat" data-en="83 tools" data-ar="83 أداة">83 tools</span>
+          <span class="feat" data-en="Prompt-injection guard" data-ar="حماية من حقن التعليمات">Prompt-injection guard</span>
+          <span class="feat" data-en="21k lines TS" data-ar="21 ألف سطر TS">21k lines TS</span>
+        </div>
         <div class="tags"><span class="tag">TypeScript</span><span class="tag">LLM Agents</span><span class="tag">Tool Calling</span><span class="tag">WhatsApp API</span><span class="tag">iOS</span></div>
         <div class="card-links">
           <a href="rona.html" data-en="Read the case study →" data-ar="اقرأ دراسة الحالة ←">Read the case study →</a>
         </div>
       </article>
-
       <article class="card" data-cat="mobile backend">
         <h3><span data-en="Etar — Booking Platform" data-ar="إطار — منصة الحجوزات">Etar — Booking Platform</span>
             <span class="badge live" data-en="App Store" data-ar="App Store">App Store</span></h3>
@@ -628,7 +662,6 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
           <a href="https://etar-app.com/#about" target="_blank" rel="noopener" data-en="etar-app.com ↗" data-ar="etar-app.com ↗">etar-app.com ↗</a>
         </div>
       </article>
-
       <article class="card" data-cat="web">
         <h3><span data-en="Care — Live Tracking Board" data-ar="Care — لوحة التتبّع المباشر">Care — Live Tracking Board</span>
             <span class="badge live" data-en="Live" data-ar="مباشر">Live</span></h3>
@@ -640,7 +673,6 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
           <a href="https://github.com/abdulsalamfawzi22/care" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </article>
-
       <article class="card" data-cat="web">
         <h3><span data-en="Realtime Collaborative Editor" data-ar="محرّر تعاوني لحظي">Realtime Collaborative Editor</span></h3>
         <p data-en="Conflict-free multi-user editing built on Yjs CRDTs, with live presence cursors so collaborators can see each other type in real time."
@@ -648,7 +680,6 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
         <div class="tags"><span class="tag">TypeScript</span><span class="tag">Yjs</span><span class="tag">WebSocket</span></div>
         <div class="card-links"><a href="https://github.com/abdulsalamfawzi22/realtime-collab-editor" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
-
       <article class="card" data-cat="web">
         <h3><span data-en="Etar Website &amp; Digital Menus" data-ar="موقع إطار والمنيو الرقمي">Etar Website &amp; Digital Menus</span></h3>
         <p data-en="Company website for Etar Software plus the digital menu engine used by its restaurant clients."
@@ -660,14 +691,13 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
           <a href="https://github.com/abdulsalamfawzi22/etar-menus" target="_blank" rel="noopener" data-en="Menus ↗" data-ar="المنيو ↗">Menus ↗</a>
         </div>
       </article>
-
       <article class="card" data-cat="mobile">
         <h3><span data-en="BuzzIt — Barber Booking" data-ar="BuzzIt — حجز الحلاقين">BuzzIt — Barber Booking</span></h3>
         <p data-en="Barber appointment booking app with streamlined service selection and scheduling. Built full-stack."
            data-ar="تطبيق حجز مواعيد الحلاقة باختيار خدمة وجدولة مبسّطة. مبني Full-Stack بالكامل.">Barber appointment booking app.</p>
         <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span></div>
+        <div class="card-links"><span class="closed">🔒 <span data-en="Private repository" data-ar="مستودع خاص">Private repository</span></span></div>
       </article>
-
       <article class="card" data-cat="mobile">
         <h3><span data-en="Daily Task Manager" data-ar="مدير المهام اليومية">Daily Task Manager</span></h3>
         <p data-en="Task management app with reminders, priorities and a points-based motivation system."
@@ -675,7 +705,6 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
         <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span></div>
         <div class="card-links"><a href="https://github.com/abdulsalamfawzi22/Daily_task_management" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
-
     </div>
   </div>
 </section>
@@ -688,27 +717,27 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
     <div class="skill-grid">
       <div class="skill-box">
         <h3 data-en="Mobile Development" data-ar="تطوير الموبايل">Mobile Development</h3>
-        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">iOS</span><span class="tag">Android</span></div>
+        <div class="tags"><span class="tag"><img src="https://cdn.simpleicons.org/flutter" alt="" width="13" height="13" loading="lazy" />Flutter</span><span class="tag"><img src="https://cdn.simpleicons.org/dart" alt="" width="13" height="13" loading="lazy" />Dart</span><span class="tag"><img src="https://cdn.simpleicons.org/ios" alt="" width="13" height="13" loading="lazy" />iOS</span><span class="tag"><img src="https://cdn.simpleicons.org/android" alt="" width="13" height="13" loading="lazy" />Android</span></div>
       </div>
       <div class="skill-box">
         <h3 data-en="Backend" data-ar="الواجهة الخلفية">Backend</h3>
-        <div class="tags"><span class="tag">NestJS</span><span class="tag">Node.js</span><span class="tag">REST API Design</span></div>
+        <div class="tags"><span class="tag"><img src="https://cdn.simpleicons.org/nestjs" alt="" width="13" height="13" loading="lazy" />NestJS</span><span class="tag"><img src="https://cdn.simpleicons.org/nodedotjs" alt="" width="13" height="13" loading="lazy" />Node.js</span><span class="tag"><img src="https://cdn.simpleicons.org/openapiinitiative" alt="" width="13" height="13" loading="lazy" />REST API Design</span></div>
       </div>
       <div class="skill-box">
         <h3 data-en="Frontend" data-ar="الواجهة الأمامية">Frontend</h3>
-        <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span></div>
+        <div class="tags"><span class="tag"><img src="https://cdn.simpleicons.org/react" alt="" width="13" height="13" loading="lazy" />React</span><span class="tag"><img src="https://cdn.simpleicons.org/typescript" alt="" width="13" height="13" loading="lazy" />TypeScript</span><span class="tag"><img src="https://cdn.simpleicons.org/javascript" alt="" width="13" height="13" loading="lazy" />JavaScript</span><span class="tag"><img src="https://cdn.simpleicons.org/html5" alt="" width="13" height="13" loading="lazy" />HTML/CSS</span></div>
       </div>
       <div class="skill-box">
         <h3 data-en="Databases" data-ar="قواعد البيانات">Databases</h3>
-        <div class="tags"><span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Firebase</span></div>
+        <div class="tags"><span class="tag"><img src="https://cdn.simpleicons.org/postgresql" alt="" width="13" height="13" loading="lazy" />SQL</span><span class="tag"><img src="https://cdn.simpleicons.org/mysql" alt="" width="13" height="13" loading="lazy" />MySQL</span><span class="tag"><img src="https://cdn.simpleicons.org/postgresql" alt="" width="13" height="13" loading="lazy" />PostgreSQL</span><span class="tag"><img src="https://cdn.simpleicons.org/firebase" alt="" width="13" height="13" loading="lazy" />Firebase</span></div>
       </div>
       <div class="skill-box">
         <h3 data-en="Systems &amp; Integration" data-ar="الأنظمة والتكامل">Systems &amp; Integration</h3>
-        <div class="tags"><span class="tag">ERP Sync</span><span class="tag">Payment Gateways</span><span class="tag">Scheduled Jobs</span><span class="tag">Data Migration</span></div>
+        <div class="tags"><span class="tag"><img src="https://cdn.simpleicons.org/databricks" alt="" width="13" height="13" loading="lazy" />ERP Sync</span><span class="tag"><img src="https://cdn.simpleicons.org/applepay" alt="" width="13" height="13" loading="lazy" />Payment Gateways</span><span class="tag"><img src="https://cdn.simpleicons.org/clockify" alt="" width="13" height="13" loading="lazy" />Scheduled Jobs</span><span class="tag"><img src="https://cdn.simpleicons.org/amazonredshift" alt="" width="13" height="13" loading="lazy" />Data Migration</span></div>
       </div>
       <div class="skill-box">
         <h3 data-en="Admin Panels &amp; Tools" data-ar="لوحات التحكم والأدوات">Admin Panels &amp; Tools</h3>
-        <div class="tags"><span class="tag">Laravel</span><span class="tag">Filament</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Agile</span></div>
+        <div class="tags"><span class="tag"><img src="https://cdn.simpleicons.org/laravel" alt="" width="13" height="13" loading="lazy" />Laravel</span><span class="tag"><img src="https://cdn.simpleicons.org/filament" alt="" width="13" height="13" loading="lazy" />Filament</span><span class="tag"><img src="https://cdn.simpleicons.org/git" alt="" width="13" height="13" loading="lazy" />Git</span><span class="tag"><img src="https://cdn.simpleicons.org/github" alt="" width="13" height="13" loading="lazy" />GitHub</span><span class="tag"><img src="https://cdn.simpleicons.org/jira" alt="" width="13" height="13" loading="lazy" />Agile</span></div>
       </div>
     </div>
   </div>
@@ -731,14 +760,14 @@ html[dir="rtl"] .shots-wrap::after{background:linear-gradient(to right,var(--sur
     </div>
 
     <div class="cert-list">
-      <div class="cert"><b data-en="Flutter Mobile Development (32h)" data-ar="تطوير الموبايل بـ Flutter (32 ساعة)">Flutter Mobile Development (32h)</b><small>2025-03-10</small></div>
-      <div class="cert"><b>Flutter 101</b><small>2025-07-28</small></div>
-      <div class="cert"><b>Flutter 102</b><small>2025-08-01</small></div>
-      <div class="cert"><b>Dart 101</b><small>2025-08-12</small></div>
-      <div class="cert"><b>Dart 102</b><small>2025-08-14</small></div>
-      <div class="cert"><b>Dart 103</b><small>2025-08-14</small></div>
-      <div class="cert"><b data-en="English Language" data-ar="اللغة الإنجليزية">English Language</b><small>2021-11-04</small></div>
-      <div class="cert"><b>SQL</b><small data-en="Course" data-ar="دورة">Course</small></div>
+      <div class="cert"><b data-en="Flutter Mobile Development (32h)" data-ar="تطوير الموبايل بـ Flutter (32 ساعة)">Flutter Mobile Development (32h)</b><span class="issuer" data-en="Training course" data-ar="دورة تدريبية">Training course</span><small>2025-03-10</small></div>
+      <div class="cert"><b>Flutter 101</b><span class="issuer" data-en="Training course" data-ar="دورة تدريبية">Training course</span><small>2025-07-28</small></div>
+      <div class="cert"><b>Flutter 102</b><span class="issuer" data-en="Training course" data-ar="دورة تدريبية">Training course</span><small>2025-08-01</small></div>
+      <div class="cert"><b>Dart 101</b><span class="issuer" data-en="Training course" data-ar="دورة تدريبية">Training course</span><small>2025-08-12</small></div>
+      <div class="cert"><b>Dart 102</b><span class="issuer" data-en="Training course" data-ar="دورة تدريبية">Training course</span><small>2025-08-14</small></div>
+      <div class="cert"><b>Dart 103</b><span class="issuer" data-en="Training course" data-ar="دورة تدريبية">Training course</span><small>2025-08-14</small></div>
+      <div class="cert"><b data-en="English Language" data-ar="اللغة الإنجليزية">English Language</b><span class="issuer" data-en="Language certificate" data-ar="شهادة لغة">Language certificate</span><small>2021-11-04</small></div>
+      <div class="cert"><b>SQL</b><span class="issuer" data-en="Training course" data-ar="دورة تدريبية">Training course</span><small data-en="Completed" data-ar="مكتملة">Completed</small></div>
     </div>
   </div>
 </section>
