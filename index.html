@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abdulsalam Fawzi Alfarra — Software Engineer</title>
+<meta name="description" content="Software Engineer · Mobile &amp; Backend Developer. Flutter, NestJS, React and SQL. Production apps on the App Store and Google Play." />
+<meta property="og:title" content="Abdulsalam Fawzi Alfarra — Software Engineer" />
+<meta property="og:description" content="Flutter · NestJS · React · SQL — production mobile apps and the backend systems behind them." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8fa; --surface-2:#eef2f6; --border:#d8dee6;
+  --text:#11181c; --muted:#5b6b7a; --accent:#1769aa; --accent-soft:#e3f0fa;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+  --radius:14px; --maxw:1080px;
+  --font:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+  --font-ar:'IBM Plex Sans Arabic','Inter',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1117; --surface:#161b22; --surface-2:#1c232c; --border:#2b3440;
+    --text:#e6edf3; --muted:#9bacbd; --accent:#58a6ff; --accent-soft:#132b45;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --surface:#161b22; --surface-2:#1c232c; --border:#2b3440;
+  --text:#e6edf3; --muted:#9bacbd; --accent:#58a6ff; --accent-soft:#132b45;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--font); line-height:1.65; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+html[dir="rtl"] body{font-family:var(--font-ar)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- nav ---------- */
+header.nav{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
+}
+.nav-in{display:flex;align-items:center;gap:12px;min-height:60px}
+.brand{font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.nav-links{display:flex;gap:4px;margin-inline-start:auto;flex-wrap:wrap}
+.nav-links a{
+  color:var(--muted);font-size:.9rem;font-weight:500;padding:7px 11px;border-radius:8px;
+}
+.nav-links a:hover{color:var(--text);background:var(--surface);text-decoration:none}
+.icon-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--surface);color:var(--text);border:1px solid var(--border);
+  border-radius:9px;padding:7px 11px;font:inherit;font-size:.85rem;font-weight:600;
+  cursor:pointer;white-space:nowrap;
+}
+.icon-btn:hover{background:var(--surface-2)}
+
+/* ---------- hero ---------- */
+.hero{padding:68px 0 52px;border-bottom:1px solid var(--border)}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center}
+.eyebrow{
+  display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--accent);background:var(--accent-soft);
+  padding:5px 11px;border-radius:999px;margin-bottom:14px;
+}
+h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.12;margin:0 0 10px;letter-spacing:-.03em;font-weight:800}
+.role{font-size:clamp(1rem,2.4vw,1.25rem);color:var(--muted);font-weight:500;margin:0 0 18px}
+.summary{color:var(--muted);max-width:60ch;margin:0 0 24px}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;
+  font-weight:600;font-size:.92rem;border:1px solid transparent;cursor:pointer;font-family:inherit;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{filter:brightness(1.08);text-decoration:none}
+.btn-ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{background:var(--surface-2);text-decoration:none}
+.avatar{
+  width:168px;height:168px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--border);box-shadow:var(--shadow);
+}
+.facts{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:.88rem;color:var(--muted)}
+.facts span{display:inline-flex;align-items:center;gap:6px}
+
+/* ---------- sections ---------- */
+section{padding:56px 0;border-bottom:1px solid var(--border)}
+h2{font-size:clamp(1.35rem,3vw,1.75rem);margin:0 0 6px;letter-spacing:-.02em;font-weight:700}
+.sec-sub{color:var(--muted);margin:0 0 28px;font-size:.95rem}
+
+/* ---------- stats ---------- */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.stat b{display:block;font-size:1.75rem;line-height:1.1;letter-spacing:-.02em}
+.stat small{color:var(--muted);font-size:.84rem}
+
+/* ---------- timeline ---------- */
+.tl{position:relative;padding-inline-start:26px}
+.tl::before{content:"";position:absolute;inset-block:6px;inset-inline-start:5px;width:2px;background:var(--border)}
+.job{position:relative;margin-bottom:34px}
+.job:last-child{margin-bottom:0}
+.job::before{
+  content:"";position:absolute;inset-inline-start:-26px;top:7px;width:12px;height:12px;
+  border-radius:50%;background:var(--accent);border:3px solid var(--bg);
+}
+.job-top{display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;margin-bottom:4px}
+.job h3{margin:0;font-size:1.05rem;font-weight:700}
+.job .org{color:var(--accent);font-weight:600;font-size:.95rem}
+.job .when{
+  margin-inline-start:auto;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums;
+  background:var(--surface);border:1px solid var(--border);padding:2px 9px;border-radius:999px;
+}
+.job ul{margin:10px 0 0;padding-inline-start:18px;color:var(--muted);font-size:.92rem}
+.job li{margin-bottom:6px}
+
+/* ---------- projects ---------- */
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.chip{
+  background:var(--surface);border:1px solid var(--border);color:var(--muted);
+  padding:6px 13px;border-radius:999px;font-size:.84rem;font-weight:600;cursor:pointer;font-family:inherit;
+}
+.chip[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;gap:10px;
+}
+.card h3{margin:0;font-size:1.02rem;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.badge{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  padding:2px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent);
+}
+.badge.live{background:#0a7d3f1a;color:#0a7d3f}
+:root[data-theme="dark"] .badge.live,
+:root:not([data-theme="light"]) .badge.live{background:#2ea04326;color:#3fb950}
+.card p{margin:0;color:var(--muted);font-size:.9rem;flex:1}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{
+  font-size:.74rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  background:var(--surface-2);border:1px solid var(--border);color:var(--muted);
+  padding:2px 8px;border-radius:6px;
+}
+.card-links{display:flex;gap:14px;font-size:.85rem;font-weight:600}
+
+/* ---------- skills ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.skill-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.skill-box h3{margin:0 0 10px;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+
+/* ---------- certs ---------- */
+.cert-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.cert{
+  background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 16px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.cert b{font-size:.92rem;font-weight:600}
+.cert small{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.contact-list{display:flex;flex-direction:column;gap:11px;margin:0;padding:0;list-style:none}
+.contact-list a{
+  display:flex;align-items:center;gap:11px;background:var(--surface);
+  border:1px solid var(--border);border-radius:11px;padding:13px 15px;color:var(--text);font-weight:500;
+}
+.contact-list a:hover{background:var(--surface-2);text-decoration:none;border-color:var(--accent)}
+.contact-list .ci{
+  width:34px;height:34px;flex:none;border-radius:9px;background:var(--accent-soft);color:var(--accent);
+  display:grid;place-items:center;font-size:.95rem;
+}
+.contact-list small{display:block;color:var(--muted);font-size:.78rem;font-weight:400}
+form{display:flex;flex-direction:column;gap:11px}
+label{font-size:.82rem;font-weight:600;color:var(--muted)}
+input,textarea{
+  width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--border);
+  background:var(--bg);color:var(--text);font-family:inherit;font-size:.93rem;
+}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+textarea{resize:vertical;min-height:112px}
+.form-note{font-size:.8rem;color:var(--muted);margin:0}
+.form-status{font-size:.87rem;font-weight:600;margin:0;min-height:20px}
+
+footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
+
+@media (max-width:820px){
+  .hero-grid{grid-template-columns:1fr;gap:26px}
+  .avatar{width:120px;height:120px;order:-1}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .job .when{margin-inline-start:0}
+}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <span class="brand" data-en="Abdulsalam Alfarra" data-ar="عبدالسلام الفرا">Abdulsalam Alfarra</span>
+    <nav class="nav-links">
+      <a href="#about"      data-en="About"        data-ar="نبذة">About</a>
+      <a href="#experience" data-en="Experience"   data-ar="الخبرة">Experience</a>
+      <a href="#projects"   data-en="Projects"     data-ar="المشاريع">Projects</a>
+      <a href="#skills"     data-en="Skills"       data-ar="المهارات">Skills</a>
+      <a href="#education"  data-en="Education"    data-ar="التعليم">Education</a>
+      <a href="#contact"    data-en="Contact"      data-ar="تواصل">Contact</a>
+    </nav>
+    <button class="icon-btn" id="langBtn" type="button">العربية</button>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">🌙</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="border-bottom:1px solid var(--border)">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" data-en="Open to opportunities" data-ar="متاح لفرص العمل">Open to opportunities</span>
+      <h1 data-en="Abdulsalam Fawzi Alfarra" data-ar="عبدالسلام فوزي الفرا">Abdulsalam Fawzi Alfarra</h1>
+      <p class="role"
+         data-en="Software Engineer · Mobile &amp; Backend Developer"
+         data-ar="مهندس برمجيات · مطوّر تطبيقات وأنظمة خلفية">Software Engineer · Mobile &amp; Backend Developer</p>
+      <p class="summary"
+         data-en="I build production mobile applications and the backend systems that power them — from Flutter apps published on the App Store and Google Play to NestJS APIs, ERP integrations and internal business tools."
+         data-ar="أبني تطبيقات موبايل إنتاجية والأنظمة الخلفية التي تشغّلها — من تطبيقات Flutter منشورة على App Store و Google Play إلى واجهات NestJS وتكاملات ERP وأدوات العمل الداخلية.">I build production mobile applications and the backend systems that power them.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="assets/Abdulsalam_Fawzi_CV.pdf" download
+           data-en="↓ Download CV" data-ar="↓ تحميل السيرة الذاتية">↓ Download CV</a>
+        <a class="btn btn-ghost" href="#contact" data-en="Get in touch" data-ar="تواصل معي">Get in touch</a>
+      </div>
+      <div class="facts">
+        <span>📍 <em data-en="Jeddah, Saudi Arabia" data-ar="جدة، السعودية">Jeddah, Saudi Arabia</em></span>
+        <span>🎓 <em data-en="B.Sc. Software Engineering" data-ar="بكالوريوس هندسة برمجيات">B.Sc. Software Engineering</em></span>
+        <span>🗣️ <em data-en="Arabic · English" data-ar="عربي · إنجليزي">Arabic · English</em></span>
+      </div>
+    </div>
+    <img class="avatar" src="https://github.com/abdulsalamfawzi22.png?size=400" alt="Abdulsalam Fawzi Alfarra" width="168" height="168" />
+  </div>
+</section>
+
+<!-- ============ ABOUT / STATS ============ -->
+<section id="about">
+  <div class="wrap">
+    <h2 data-en="At a glance" data-ar="لمحة سريعة">At a glance</h2>
+    <p class="sec-sub"
+       data-en="Delivering complete, real-world systems end to end — from automated ERP synchronization and HR/payroll modules to fleet management and reporting apps."
+       data-ar="أسلّم أنظمة حقيقية متكاملة من البداية للنهاية — من مزامنة ERP الآلية ووحدات الموارد البشرية والرواتب إلى إدارة الأساطيل وتطبيقات التقارير.">Delivering complete, real-world systems end to end.</p>
+    <div class="stat-row">
+      <div class="stat"><b>2</b><small data-en="Apps published on App Store &amp; Google Play" data-ar="تطبيقات منشورة على App Store و Google Play">Apps published on App Store &amp; Google Play</small></div>
+      <div class="stat"><b>4.0★</b><small data-en="Monafiss Market store rating" data-ar="تقييم تطبيق منافس ماركت">Monafiss Market store rating</small></div>
+      <div class="stat"><b>35–50<span style="font-size:1rem"> min</span></b><small data-en="Delivery window the platform operates on" data-ar="نافذة التوصيل التي تعمل عليها المنصة">Delivery window the platform operates on</small></div>
+      <div class="stat"><b>1k+</b><small data-en="Commits across public and private repositories" data-ar="كوميت في المستودعات العامة والخاصة">Commits across public and private repositories</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <h2 data-en="Professional Experience" data-ar="الخبرة المهنية">Professional Experience</h2>
+    <p class="sec-sub" data-en="Where I have shipped software that real customers use every day."
+       data-ar="أماكن أطلقت فيها برمجيات يستخدمها عملاء حقيقيون كل يوم.">Where I have shipped software that real customers use every day.</p>
+
+    <div class="tl">
+      <article class="job">
+        <div class="job-top">
+          <h3 data-en="Software Engineer" data-ar="مهندس برمجيات">Software Engineer</h3>
+          <span class="org" data-en="Al-Monafiss Stores (Monafiss) — Jeddah, Saudi Arabia"
+                data-ar="متاجر المنافس (Monafiss) — جدة، السعودية">Al-Monafiss Stores (Monafiss) — Jeddah, Saudi Arabia</span>
+          <span class="when" data-en="2025 – Present" data-ar="2025 – الآن">2025 – Present</span>
+        </div>
+        <ul>
+          <li data-en="Develop and maintain Monafiss Market, an on-demand grocery-delivery app (35–50 min delivery) published on the App Store and Google Play and rated 4.0★ — featuring integrated payment gateways (Mada, Visa, Apple Pay), an in-app wallet with automatic refunds, and live driver tracking on the map."
+              data-ar="أطوّر وأصون تطبيق منافس ماركت لتوصيل البقالة عند الطلب (توصيل 35–50 دقيقة) المنشور على App Store و Google Play بتقييم 4.0★ — ويتضمن بوابات دفع متكاملة (مدى، فيزا، Apple Pay) ومحفظة داخل التطبيق باسترداد آلي وتتبّع مباشر للسائق على الخريطة.">Monafiss Market — on-demand grocery delivery.</li>
+          <li data-en="Built and published Monafiss Driver — the driver app with order dispatch, live GPS tracking, barcode scanning and proof-of-delivery photos — plus a centralized admin dashboard that manages both the driver app and the customer app from one place."
+              data-ar="بنيت ونشرت تطبيق منافس سواق — تطبيق السائق بتوزيع الطلبات وتتبّع GPS مباشر ومسح الباركود وصور إثبات التسليم — إضافة إلى لوحة تحكم مركزية تدير تطبيق السائق وتطبيق العميل من مكان واحد.">Monafiss Driver + centralized admin dashboard.</li>
+          <li data-en="Designed and built an automated ERP synchronization service that pulls data from the company ERP and pushes it to the mobile apps on a configurable schedule — syncing offers, prices and inventory, and automatically enabling or disabling promotions."
+              data-ar="صمّمت وبنيت خدمة مزامنة آلية مع نظام ERP تسحب البيانات من نظام الشركة وتدفعها للتطبيقات وفق جدول قابل للضبط — تزامن العروض والأسعار والمخزون وتفعّل أو توقف العروض تلقائياً.">Automated ERP synchronization service.</li>
+          <li data-en="Developed an HR module that calculates employee salaries and manages leave balances, and implemented in-app messaging, fleet management and a comprehensive reporting suite."
+              data-ar="طوّرت وحدة موارد بشرية تحتسب رواتب الموظفين وتدير أرصدة الإجازات، ونفّذت المراسلة داخل التطبيق وإدارة الأسطول ومجموعة تقارير شاملة.">HR module, in-app messaging, fleet management, reporting.</li>
+          <li data-en="Leading an ongoing ERP data migration from the company's legacy system to a newly adopted ERP."
+              data-ar="أقود عملية ترحيل بيانات ERP جارية من النظام القديم للشركة إلى نظام ERP المعتمد حديثاً.">Leading an ERP data migration.</li>
+          <li data-en="Building “Roeya”, a mobile reporting app that surfaces Monafiss Market analytics so managers can review business performance anytime, without opening a laptop."
+              data-ar="أبني تطبيق «رؤية» للتقارير، يعرض تحليلات منافس ماركت ليراجع المدراء أداء العمل في أي وقت دون الحاجة لفتح حاسوب.">Building “Roeya” — mobile reporting app.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-top">
+          <h3 data-en="Application Developer" data-ar="مطوّر تطبيقات">Application Developer</h3>
+          <span class="org" data-en="The Hope International — Jordan" data-ar="The Hope International — الأردن">The Hope International — Jordan</span>
+          <span class="when" data-en="Jan 2025 – Mar 2025" data-ar="يناير 2025 – مارس 2025">Jan 2025 – Mar 2025</span>
+        </div>
+        <ul>
+          <li data-en="Developed and maintained cross-platform mobile applications using Flutter (Dart)."
+              data-ar="طوّرت وصنت تطبيقات موبايل متعددة المنصات باستخدام Flutter (Dart).">Cross-platform Flutter applications.</li>
+          <li data-en="Designed responsive interfaces and implemented efficient navigation and state management."
+              data-ar="صمّمت واجهات متجاوبة ونفّذت تنقّلاً وإدارة حالة بكفاءة.">Responsive interfaces, navigation and state management.</li>
+          <li data-en="Integrated RESTful APIs to connect apps with backend services for smooth data flow."
+              data-ar="دمجت واجهات RESTful لربط التطبيقات بالخدمات الخلفية وضمان تدفق سلس للبيانات.">RESTful API integration.</li>
+          <li data-en="Collaborated with designers and backend developers; participated in testing, debugging and deployment on Android and iOS."
+              data-ar="تعاونت مع المصممين ومطوّري الواجهة الخلفية، وشاركت في الاختبار وتصحيح الأخطاء والنشر على Android و iOS.">Collaboration, testing, debugging and deployment.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <h2 data-en="Projects" data-ar="المشاريع">Projects</h2>
+    <p class="sec-sub" data-en="Production systems, published apps and side projects."
+       data-ar="أنظمة إنتاجية وتطبيقات منشورة ومشاريع جانبية.">Production systems, published apps and side projects.</p>
+
+    <div class="filters" role="group">
+      <button class="chip" data-filter="all"      aria-pressed="true"  data-en="All"      data-ar="الكل">All</button>
+      <button class="chip" data-filter="mobile"   aria-pressed="false" data-en="Mobile"   data-ar="موبايل">Mobile</button>
+      <button class="chip" data-filter="backend"  aria-pressed="false" data-en="Backend"  data-ar="باك إند">Backend</button>
+      <button class="chip" data-filter="web"      aria-pressed="false" data-en="Web"      data-ar="ويب">Web</button>
+    </div>
+
+    <div class="grid" id="projectGrid">
+
+      <article class="card" data-cat="mobile backend">
+        <h3><span data-en="Monafiss Market" data-ar="منافس ماركت">Monafiss Market</span>
+            <span class="badge live" data-en="Published" data-ar="منشور">Published</span></h3>
+        <p data-en="On-demand grocery delivery in 35–50 minutes. Integrated payment gateways (Mada, Visa, Apple Pay), an in-app wallet with automatic refunds, and live driver tracking on the map. Rated 4.0★ on the stores."
+           data-ar="توصيل بقالة عند الطلب خلال 35–50 دقيقة. بوابات دفع متكاملة (مدى، فيزا، Apple Pay) ومحفظة داخل التطبيق باسترداد آلي وتتبّع مباشر للسائق على الخريطة. بتقييم 4.0★ على المتاجر.">On-demand grocery delivery in 35–50 minutes.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">NestJS</span><span class="tag">SQL</span></div>
+      </article>
+
+      <article class="card" data-cat="mobile backend">
+        <h3><span data-en="Monafiss Driver" data-ar="منافس سواق">Monafiss Driver</span>
+            <span class="badge live" data-en="Published" data-ar="منشور">Published</span></h3>
+        <p data-en="Driver app with order dispatch, live GPS tracking, barcode scanning and proof-of-delivery photos — plus a centralized admin dashboard that manages both the driver and customer apps from one place."
+           data-ar="تطبيق السائق مع توزيع الطلبات وتتبّع GPS مباشر ومسح الباركود وصور إثبات التسليم — إضافة إلى لوحة تحكم مركزية تدير تطبيق السائق وتطبيق العميل من مكان واحد.">Driver dispatch, GPS tracking, barcode scanning.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">GPS</span><span class="tag">Dashboard</span></div>
+      </article>
+
+      <article class="card" data-cat="backend">
+        <h3><span data-en="ERP Synchronization Service" data-ar="خدمة مزامنة ERP">ERP Synchronization Service</span></h3>
+        <p data-en="Automated service that pulls data from the company ERP and pushes it to the mobile apps on a configurable schedule — syncing offers, prices and inventory, and automatically enabling or disabling promotions."
+           data-ar="خدمة آلية تسحب البيانات من نظام ERP وتدفعها للتطبيقات وفق جدول قابل للضبط — تزامن العروض والأسعار والمخزون وتفعّل أو توقف العروض تلقائياً.">Automated ERP data synchronization.</p>
+        <div class="tags"><span class="tag">NestJS</span><span class="tag">SQL</span><span class="tag">Scheduled Jobs</span></div>
+      </article>
+
+      <article class="card" data-cat="backend web">
+        <h3><span data-en="HR &amp; Payroll Module" data-ar="وحدة الموارد البشرية والرواتب">HR &amp; Payroll Module</span></h3>
+        <p data-en="Calculates employee salaries and manages leave balances, built into the company's internal platform alongside in-app messaging, fleet management and a reporting suite."
+           data-ar="تحتسب رواتب الموظفين وتدير أرصدة الإجازات، مبنية ضمن منصة الشركة الداخلية إلى جانب المراسلة وإدارة الأسطول ومجموعة التقارير.">Salary calculation and leave balance management.</p>
+        <div class="tags"><span class="tag">Laravel</span><span class="tag">Filament</span><span class="tag">MySQL</span></div>
+      </article>
+
+      <article class="card" data-cat="mobile">
+        <h3><span data-en="Roeya — Reporting App" data-ar="رؤية — تطبيق التقارير">Roeya — Reporting App</span>
+            <span class="badge" data-en="In progress" data-ar="قيد التطوير">In progress</span></h3>
+        <p data-en="Mobile reporting app that surfaces Monafiss Market analytics so managers can review business performance anytime, without opening a laptop."
+           data-ar="تطبيق تقارير يعرض تحليلات منافس ماركت ليراجع المدراء أداء العمل في أي وقت دون الحاجة لفتح حاسوب.">Mobile analytics for managers.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Charts</span><span class="tag">REST API</span></div>
+      </article>
+
+      <article class="card" data-cat="mobile backend">
+        <h3><span data-en="Etar — Booking Platform" data-ar="إطار — منصة الحجوزات">Etar — Booking Platform</span>
+            <span class="badge live" data-en="App Store" data-ar="App Store">App Store</span></h3>
+        <p data-en="A booking platform for event photographers and service providers, published on the App Store under my own developer account. Users browse providers, portfolios and pricing, pay securely in-app, chat with providers and manage bookings — backed by a dedicated admin dashboard. Designed and built end to end."
+           data-ar="منصة حجوزات لمصوّري المناسبات ومقدّمي الخدمات، منشورة على App Store تحت حساب المطوّر الخاص بي. يتصفّح المستخدمون المزوّدين وأعمالهم وأسعارهم، ويدفعون بأمان داخل التطبيق، ويتحادثون مع المزوّدين ويديرون الحجوزات — مدعومة بلوحة تحكم مخصصة. صُمّمت وبُنيت بالكامل.">Booking platform for event photographers.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Payments</span><span class="tag">Chat</span></div>
+      </article>
+
+      <article class="card" data-cat="web">
+        <h3><span data-en="Care — Live Tracking Board" data-ar="Care — لوحة التتبّع المباشر">Care — Live Tracking Board</span>
+            <span class="badge live" data-en="Live" data-ar="مباشر">Live</span></h3>
+        <p data-en="Live tracking dashboard for Monafiss — follows buses and drivers on the map, with Firebase realtime data and QR-based access. Deployed on its own domain."
+           data-ar="لوحة تتبّع مباشر لمنافس — تتابع الباصات والسائقين على الخريطة، ببيانات Firebase لحظية ودخول عبر QR. منشورة على دومين خاص بها.">Live bus and driver tracking dashboard.</p>
+        <div class="tags"><span class="tag">JavaScript</span><span class="tag">Firebase</span><span class="tag">Maps</span></div>
+        <div class="card-links">
+          <a href="https://care.monafiss.market" target="_blank" rel="noopener" data-en="Live site ↗" data-ar="الموقع ↗">Live site ↗</a>
+          <a href="https://github.com/abdulsalamfawzi22/care" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="web">
+        <h3><span data-en="Realtime Collaborative Editor" data-ar="محرّر تعاوني لحظي">Realtime Collaborative Editor</span></h3>
+        <p data-en="Conflict-free multi-user editing built on Yjs CRDTs, with live presence cursors so collaborators can see each other type in real time."
+           data-ar="تحرير متعدّد المستخدمين خالٍ من التعارض مبني على Yjs CRDTs، مع مؤشرات حضور مباشرة تُظهر كتابة المتعاونين لحظياً.">Conflict-free multi-user editing on Yjs CRDTs.</p>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">Yjs</span><span class="tag">WebSocket</span></div>
+        <div class="card-links"><a href="https://github.com/abdulsalamfawzi22/realtime-collab-editor" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <article class="card" data-cat="web">
+        <h3><span data-en="Etar Website &amp; Digital Menus" data-ar="موقع إطار والمنيو الرقمي">Etar Website &amp; Digital Menus</span></h3>
+        <p data-en="Company website for Etar Software plus the digital menu engine used by its restaurant clients."
+           data-ar="موقع شركة إطار للبرمجيات إضافة إلى محرّك المنيو الرقمي المستخدم لدى عملائها من المطاعم.">Company site plus a digital menu engine.</p>
+        <div class="tags"><span class="tag">JavaScript</span><span class="tag">CSS</span></div>
+        <div class="card-links">
+          <a href="https://github.com/abdulsalamfawzi22/etar-website" target="_blank" rel="noopener" data-en="Website ↗" data-ar="الموقع ↗">Website ↗</a>
+          <a href="https://github.com/abdulsalamfawzi22/etar-menus" target="_blank" rel="noopener" data-en="Menus ↗" data-ar="المنيو ↗">Menus ↗</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="mobile">
+        <h3><span data-en="BuzzIt — Barber Booking" data-ar="BuzzIt — حجز الحلاقين">BuzzIt — Barber Booking</span></h3>
+        <p data-en="Barber appointment booking app with streamlined service selection and scheduling. Built full-stack."
+           data-ar="تطبيق حجز مواعيد الحلاقة باختيار خدمة وجدولة مبسّطة. مبني Full-Stack بالكامل.">Barber appointment booking app.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span></div>
+      </article>
+
+      <article class="card" data-cat="mobile">
+        <h3><span data-en="Daily Task Manager" data-ar="مدير المهام اليومية">Daily Task Manager</span></h3>
+        <p data-en="Task management app with reminders, priorities and a points-based motivation system."
+           data-ar="تطبيق إدارة مهام مع تذكيرات وأولويات ونظام تحفيز بالنقاط.">Tasks with reminders, priorities and points.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span></div>
+        <div class="card-links"><a href="https://github.com/abdulsalamfawzi22/Daily_task_management" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <h2 data-en="Technical Skills" data-ar="المهارات التقنية">Technical Skills</h2>
+    <p class="sec-sub" data-en="The stack I work in day to day." data-ar="التقنيات التي أعمل بها يومياً.">The stack I work in day to day.</p>
+    <div class="skill-grid">
+      <div class="skill-box">
+        <h3 data-en="Mobile Development" data-ar="تطوير الموبايل">Mobile Development</h3>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">iOS</span><span class="tag">Android</span></div>
+      </div>
+      <div class="skill-box">
+        <h3 data-en="Backend" data-ar="الواجهة الخلفية">Backend</h3>
+        <div class="tags"><span class="tag">NestJS</span><span class="tag">Node.js</span><span class="tag">REST API Design</span></div>
+      </div>
+      <div class="skill-box">
+        <h3 data-en="Frontend" data-ar="الواجهة الأمامية">Frontend</h3>
+        <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span></div>
+      </div>
+      <div class="skill-box">
+        <h3 data-en="Databases" data-ar="قواعد البيانات">Databases</h3>
+        <div class="tags"><span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Firebase</span></div>
+      </div>
+      <div class="skill-box">
+        <h3 data-en="Systems &amp; Integration" data-ar="الأنظمة والتكامل">Systems &amp; Integration</h3>
+        <div class="tags"><span class="tag">ERP Sync</span><span class="tag">Payment Gateways</span><span class="tag">Scheduled Jobs</span><span class="tag">Data Migration</span></div>
+      </div>
+      <div class="skill-box">
+        <h3 data-en="Admin Panels &amp; Tools" data-ar="لوحات التحكم والأدوات">Admin Panels &amp; Tools</h3>
+        <div class="tags"><span class="tag">Laravel</span><span class="tag">Filament</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Agile</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education">
+  <div class="wrap">
+    <h2 data-en="Education &amp; Certificates" data-ar="التعليم والشهادات">Education &amp; Certificates</h2>
+    <p class="sec-sub" data-en="Degree and professional training." data-ar="الدرجة العلمية والتدريب المهني.">Degree and professional training.</p>
+
+    <div class="tl" style="margin-bottom:26px">
+      <article class="job">
+        <div class="job-top">
+          <h3 data-en="B.Sc. in Software Engineering" data-ar="بكالوريوس هندسة البرمجيات">B.Sc. in Software Engineering</h3>
+          <span class="org" data-en="Philadelphia University — Jordan" data-ar="جامعة فيلادلفيا — الأردن">Philadelphia University — Jordan</span>
+          <span class="when">2025</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="cert-list">
+      <div class="cert"><b data-en="Flutter Mobile Development (32h)" data-ar="تطوير الموبايل بـ Flutter (32 ساعة)">Flutter Mobile Development (32h)</b><small>2025-03-10</small></div>
+      <div class="cert"><b>Flutter 101</b><small>2025-07-28</small></div>
+      <div class="cert"><b>Flutter 102</b><small>2025-08-01</small></div>
+      <div class="cert"><b>Dart 101</b><small>2025-08-12</small></div>
+      <div class="cert"><b>Dart 102</b><small>2025-08-14</small></div>
+      <div class="cert"><b>Dart 103</b><small>2025-08-14</small></div>
+      <div class="cert"><b data-en="English Language" data-ar="اللغة الإنجليزية">English Language</b><small>2021-11-04</small></div>
+      <div class="cert"><b>SQL</b><small data-en="Course" data-ar="دورة">Course</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" style="border-bottom:none">
+  <div class="wrap">
+    <h2 data-en="Get in touch" data-ar="تواصل معي">Get in touch</h2>
+    <p class="sec-sub" data-en="Open to Full-Stack and Mobile Engineering roles."
+       data-ar="متاح لفرص عمل في هندسة البرمجيات Full-Stack وتطوير الموبايل.">Open to Full-Stack and Mobile Engineering roles.</p>
+
+    <div class="contact-grid">
+      <ul class="contact-list">
+        <li><a href="mailto:abdulsalam.fawzi23@gmail.com">
+          <span class="ci">✉</span>
+          <span><span data-en="Email" data-ar="البريد الإلكتروني">Email</span><small>abdulsalam.fawzi23@gmail.com</small></span></a></li>
+        <li><a href="tel:+966560609352">
+          <span class="ci">☎</span>
+          <span><span data-en="Phone" data-ar="الجوال">Phone</span><small dir="ltr">+966 56 060 9352</small></span></a></li>
+        <li><a href="https://www.linkedin.com/in/abdulsalam-fawzi-8421a932a" target="_blank" rel="noopener">
+          <span class="ci">in</span>
+          <span>LinkedIn<small>abdulsalam-fawzi</small></span></a></li>
+        <li><a href="https://github.com/abdulsalamfawzi22" target="_blank" rel="noopener">
+          <span class="ci">⌥</span>
+          <span>GitHub<small>@abdulsalamfawzi22</small></span></a></li>
+      </ul>
+
+      <form id="contactForm" novalidate>
+        <div>
+          <label for="cf-name" data-en="Name" data-ar="الاسم">Name</label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div>
+          <label for="cf-email" data-en="Your email" data-ar="بريدك الإلكتروني">Your email</label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" dir="ltr" />
+        </div>
+        <div>
+          <label for="cf-msg" data-en="Message" data-ar="الرسالة">Message</label>
+          <textarea id="cf-msg" name="message" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" data-en="Send message" data-ar="إرسال الرسالة">Send message</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+        <p class="form-note" id="formNote"
+           data-en="This form opens your email app. To receive messages directly on this page, add a Formspree ID."
+           data-ar="هذا النموذج يفتح تطبيق البريد لديك. لاستقبال الرسائل مباشرة من الصفحة، أضف معرّف Formspree.">This form opens your email app.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0">© <span id="yr"></span> Abdulsalam Fawzi Alfarra ·
+      <span data-en="Built with plain HTML, CSS and JavaScript" data-ar="مبني بـ HTML و CSS و JavaScript فقط">Built with plain HTML, CSS and JavaScript</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- year ---------- */
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  /* ---------- storage helpers (never throw) ---------- */
+  function read(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function write(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+  /* ---------- language ---------- */
+  var htmlEl = document.documentElement;
+  var langBtn = document.getElementById("langBtn");
+
+  function applyLang(lang){
+    var isAr = lang === "ar";
+    htmlEl.lang = isAr ? "ar" : "en";
+    htmlEl.dir  = isAr ? "rtl" : "ltr";
+    langBtn.textContent = isAr ? "English" : "العربية";
+    document.title = isAr
+      ? "عبدالسلام فوزي الفرا — مهندس برمجيات"
+      : "Abdulsalam Fawzi Alfarra — Software Engineer";
+
+    var nodes = document.querySelectorAll("[data-en][data-ar]");
+    for (var i = 0; i < nodes.length; i++){
+      var v = nodes[i].getAttribute(isAr ? "data-ar" : "data-en");
+      if (v !== null) nodes[i].textContent = v;
+    }
+    write("lang", lang);
+  }
+
+  langBtn.addEventListener("click", function(){
+    applyLang(htmlEl.lang === "ar" ? "en" : "ar");
+  });
+
+  var savedLang = read("lang");
+  if (!savedLang){
+    savedLang = (navigator.language || "en").toLowerCase().indexOf("ar") === 0 ? "ar" : "en";
+  }
+  applyLang(savedLang);
+
+  /* ---------- theme ---------- */
+  var themeBtn = document.getElementById("themeBtn");
+
+  function applyTheme(mode){
+    if (mode === "dark" || mode === "light"){
+      htmlEl.setAttribute("data-theme", mode);
+    } else {
+      htmlEl.removeAttribute("data-theme");
+    }
+    var dark = mode === "dark" ||
+      (!mode && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    themeBtn.textContent = dark ? "☀️" : "🌙";
+    if (mode) write("theme", mode);
+  }
+
+  themeBtn.addEventListener("click", function(){
+    var isDark = htmlEl.getAttribute("data-theme") === "dark" ||
+      (!htmlEl.getAttribute("data-theme") && window.matchMedia &&
+       window.matchMedia("(prefers-color-scheme: dark)").matches);
+    applyTheme(isDark ? "light" : "dark");
+  });
+
+  applyTheme(read("theme"));
+
+  /* ---------- project filters ---------- */
+  var chips = document.querySelectorAll(".chip[data-filter]");
+  var cards = document.querySelectorAll("#projectGrid .card");
+
+  for (var c = 0; c < chips.length; c++){
+    chips[c].addEventListener("click", function(){
+      var want = this.getAttribute("data-filter");
+      for (var j = 0; j < chips.length; j++){
+        chips[j].setAttribute("aria-pressed", String(chips[j] === this));
+      }
+      for (var k = 0; k < cards.length; k++){
+        var cat = cards[k].getAttribute("data-cat") || "";
+        cards[k].hidden = !(want === "all" || cat.indexOf(want) !== -1);
+      }
+    });
+  }
+
+  /* ---------- contact form ----------
+     Set FORMSPREE_ID to the id from https://formspree.io (e.g. "xwkgabcd")
+     to receive messages on this page. While it is empty the form falls
+     back to opening the visitor's email client, so it always works.     */
+  var FORMSPREE_ID = "";
+
+  var form   = document.getElementById("contactForm");
+  var status = document.getElementById("formStatus");
+  var note   = document.getElementById("formNote");
+  var isAr   = function(){ return htmlEl.lang === "ar"; };
+
+  if (FORMSPREE_ID) note.hidden = true;
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    /* NB: form.name resolves to the form's own name attribute, not the
+       field, so each input is looked up by id instead. */
+    var name = document.getElementById("cf-name").value.trim();
+    var mail = document.getElementById("cf-email").value.trim();
+    var msg  = document.getElementById("cf-msg").value.trim();
+
+    if (!name || !mail || !msg){
+      status.textContent = isAr() ? "الرجاء تعبئة كل الحقول." : "Please fill in every field.";
+      status.style.color = "#d1242f";
+      return;
+    }
+
+    if (!FORMSPREE_ID){
+      var subject = encodeURIComponent("Portfolio contact — " + name);
+      var body    = encodeURIComponent(msg + "\n\n— " + name + " <" + mail + ">");
+      window.location.href = "mailto:abdulsalam.fawzi23@gmail.com?subject=" + subject + "&body=" + body;
+      status.textContent = isAr() ? "جارٍ فتح تطبيق البريد…" : "Opening your email app…";
+      status.style.color = "var(--muted)";
+      return;
+    }
+
+    status.textContent = isAr() ? "جارٍ الإرسال…" : "Sending…";
+    status.style.color = "var(--muted)";
+
+    fetch("https://formspree.io/f/" + FORMSPREE_ID, {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: new FormData(form)
+    }).then(function(res){
+      if (!res.ok) throw new Error("Request failed");
+      form.reset();
+      status.textContent = isAr() ? "تم الإرسال، شكراً لك ✅" : "Message sent, thank you ✅";
+      status.style.color = "#0a7d3f";
+    }).catch(function(){
+      status.textContent = isAr()
+        ? "تعذّر الإرسال. راسلني مباشرة على abdulsalam.fawzi23@gmail.com"
+        : "Could not send. Email me directly at abdulsalam.fawzi23@gmail.com";
+      status.style.color = "#d1242f";
+    });
+  });
+})();
+</script>
+</body>
+</html>
