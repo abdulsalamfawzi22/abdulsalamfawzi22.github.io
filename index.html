@@ -255,10 +255,10 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
        data-en="Delivering complete, real-world systems end to end — from automated ERP synchronization and HR/payroll modules to fleet management and reporting apps."
        data-ar="أسلّم أنظمة حقيقية متكاملة من البداية للنهاية — من مزامنة ERP الآلية ووحدات الموارد البشرية والرواتب إلى إدارة الأساطيل وتطبيقات التقارير.">Delivering complete, real-world systems end to end.</p>
     <div class="stat-row">
-      <div class="stat"><b>2</b><small data-en="Apps published on App Store &amp; Google Play" data-ar="تطبيقات منشورة على App Store و Google Play">Apps published on App Store &amp; Google Play</small></div>
+      <div class="stat"><b>5</b><small data-en="Production mobile apps shipped" data-ar="تطبيقات موبايل إنتاجية أطلقتها">Production mobile apps shipped</small></div>
+      <div class="stat"><b>72</b><small data-en="Backend modules in the Monafiss platform" data-ar="وحدة خلفية في منصة منافس">Backend modules in the Monafiss platform</small></div>
+      <div class="stat"><b>105</b><small data-en="Data models behind that platform" data-ar="نموذج بيانات خلف تلك المنصة">Data models behind that platform</small></div>
       <div class="stat"><b>4.0★</b><small data-en="Monafiss Market store rating" data-ar="تقييم تطبيق منافس ماركت">Monafiss Market store rating</small></div>
-      <div class="stat"><b>35–50<span style="font-size:1rem"> min</span></b><small data-en="Delivery window the platform operates on" data-ar="نافذة التوصيل التي تعمل عليها المنصة">Delivery window the platform operates on</small></div>
-      <div class="stat"><b>1k+</b><small data-en="Commits across public and private repositories" data-ar="كوميت في المستودعات العامة والخاصة">Commits across public and private repositories</small></div>
     </div>
   </div>
 </section>
@@ -323,50 +323,82 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
        data-ar="أنظمة إنتاجية وتطبيقات منشورة ومشاريع جانبية.">Production systems, published apps and side projects.</p>
 
     <div class="filters" role="group">
-      <button class="chip" data-filter="all"      aria-pressed="true"  data-en="All"      data-ar="الكل">All</button>
-      <button class="chip" data-filter="mobile"   aria-pressed="false" data-en="Mobile"   data-ar="موبايل">Mobile</button>
-      <button class="chip" data-filter="backend"  aria-pressed="false" data-en="Backend"  data-ar="باك إند">Backend</button>
-      <button class="chip" data-filter="web"      aria-pressed="false" data-en="Web"      data-ar="ويب">Web</button>
+      <button class="chip" data-filter="all"      aria-pressed="true"  data-en="All"              data-ar="الكل">All</button>
+      <button class="chip" data-filter="mobile"   aria-pressed="false" data-en="Mobile"           data-ar="موبايل">Mobile</button>
+      <button class="chip" data-filter="backend"  aria-pressed="false" data-en="Backend &amp; Platform" data-ar="باك إند ومنصات">Backend &amp; Platform</button>
+      <button class="chip" data-filter="ai"       aria-pressed="false" data-en="AI"               data-ar="ذكاء اصطناعي">AI</button>
+      <button class="chip" data-filter="web"      aria-pressed="false" data-en="Web"              data-ar="ويب">Web</button>
     </div>
 
     <div class="grid" id="projectGrid">
 
-      <article class="card" data-cat="mobile backend">
-        <h3><span data-en="Monafiss Market" data-ar="منافس ماركت">Monafiss Market</span>
+      <article class="card" data-cat="mobile">
+        <h3><span data-en="Monafiss Market — Customer App" data-ar="منافس ماركت — تطبيق العميل">Monafiss Market — Customer App</span>
+            <span class="badge live" data-en="App Store · Google Play" data-ar="App Store · Google Play">App Store · Google Play</span></h3>
+        <p data-en="On-demand grocery delivery in 35–50 minutes, rated 4.0★ and now at build 151. Thirty-eight feature modules including a VR shopping aisle, an AI shopping assistant that parses written lists, in-app voice and video calls over LiveKit, shared baskets and family accounts, a loyalty programme, wallet with automatic refunds, stories and a digital magazine — with HyperPay checkout (Mada, Visa, Apple Pay) and live driver tracking on the map."
+           data-ar="توصيل بقالة عند الطلب خلال 35–50 دقيقة، بتقييم 4.0★ ووصل للبناء رقم 151. ثمانٍ وثلاثون وحدة ميزة تشمل ممر تسوّق بالواقع الافتراضي، ومساعد ذكاء اصطناعي يحلّل قوائم التسوّق المكتوبة، ومكالمات صوتية ومرئية داخل التطبيق عبر LiveKit، وسلّات مشتركة وحسابات عائلية، وبرنامج ولاء، ومحفظة باسترداد آلي، وقصص ومجلة رقمية — مع دفع HyperPay (مدى، فيزا، Apple Pay) وتتبّع مباشر للسائق على الخريطة.">On-demand grocery delivery with 38 feature modules.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">LiveKit</span><span class="tag">Socket.IO</span><span class="tag">HyperPay</span><span class="tag">Firebase</span></div>
+      </article>
+
+      <article class="card" data-cat="mobile">
+        <h3><span data-en="Monafiss Driver" data-ar="منافس سواق">Monafiss Driver</span>
             <span class="badge live" data-en="Published" data-ar="منشور">Published</span></h3>
-        <p data-en="On-demand grocery delivery in 35–50 minutes. Integrated payment gateways (Mada, Visa, Apple Pay), an in-app wallet with automatic refunds, and live driver tracking on the map. Rated 4.0★ on the stores."
-           data-ar="توصيل بقالة عند الطلب خلال 35–50 دقيقة. بوابات دفع متكاملة (مدى، فيزا، Apple Pay) ومحفظة داخل التطبيق باسترداد آلي وتتبّع مباشر للسائق على الخريطة. بتقييم 4.0★ على المتاجر.">On-demand grocery delivery in 35–50 minutes.</p>
-        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">NestJS</span><span class="tag">SQL</span></div>
+        <p data-en="The courier app behind the delivery fleet: order dispatch, live GPS tracking, barcode scanning, proof-of-delivery photos, return pickups and a built-in earnings view, with in-app calls and realtime order updates over sockets."
+           data-ar="تطبيق المندوب خلف أسطول التوصيل: توزيع الطلبات، وتتبّع GPS مباشر، ومسح الباركود، وصور إثبات التسليم، واستلام المرتجعات، وشاشة أرباح مدمجة، مع مكالمات داخل التطبيق وتحديثات لحظية للطلبات عبر السوكِت.">Courier app with dispatch, GPS, scanning and earnings.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">GPS</span><span class="tag">Barcode</span><span class="tag">Socket.IO</span></div>
       </article>
 
       <article class="card" data-cat="mobile backend">
-        <h3><span data-en="Monafiss Driver" data-ar="منافس سواق">Monafiss Driver</span>
-            <span class="badge live" data-en="Published" data-ar="منشور">Published</span></h3>
-        <p data-en="Driver app with order dispatch, live GPS tracking, barcode scanning and proof-of-delivery photos — plus a centralized admin dashboard that manages both the driver and customer apps from one place."
-           data-ar="تطبيق السائق مع توزيع الطلبات وتتبّع GPS مباشر ومسح الباركود وصور إثبات التسليم — إضافة إلى لوحة تحكم مركزية تدير تطبيق السائق وتطبيق العميل من مكان واحد.">Driver dispatch, GPS tracking, barcode scanning.</p>
-        <div class="tags"><span class="tag">Flutter</span><span class="tag">GPS</span><span class="tag">Dashboard</span></div>
+        <h3><span data-en="Monafiss Fulfillment — Picker App" data-ar="منافس — تطبيق المجهّز">Monafiss Fulfillment — Picker App</span></h3>
+        <p data-en="The in-store picking app plus its own Express and Socket.IO backend. Built on a clean architecture layer (get_it, injectable, freezed) with barcode scanning, haptic feedback and a screen that stays awake while a picker works an order."
+           data-ar="تطبيق تجهيز الطلبات داخل المتجر مع خادمه الخاص المبني على Express و Socket.IO. مبني بمعمارية نظيفة (get_it و injectable و freezed) مع مسح الباركود واهتزاز تأكيدي وشاشة تبقى مضاءة أثناء تجهيز المجهّز للطلب.">In-store picking app with its own realtime backend.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Express</span><span class="tag">Socket.IO</span><span class="tag">Clean Architecture</span></div>
+      </article>
+
+      <article class="card" data-cat="mobile">
+        <h3><span data-en="Roeya — Manager Reporting App" data-ar="رؤية — تطبيق تقارير المدراء">Roeya — Manager Reporting App</span>
+            <span class="badge live" data-en="Internal release" data-ar="إصدار داخلي">Internal release</span></h3>
+        <p data-en="Published for company managers only and distributed by private link rather than the public stores. Surfaces live business analytics as charts, exports and prints PDF reports, unlocks with biometrics, carries its own AI module and puts a summary widget on the manager's home screen."
+           data-ar="منشور لمدراء الشركة فقط ويوزَّع عبر رابط خاص بدل المتاجر العامة. يعرض تحليلات العمل اللحظية كرسوم بيانية، ويصدّر ويطبع تقارير PDF، ويُفتح ببصمة، ويحمل وحدة ذكاء اصطناعي خاصة به، ويضع ودجت ملخّص على شاشة المدير الرئيسية.">Live analytics, PDF reports, biometrics and a home widget.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">fl_chart</span><span class="tag">PDF</span><span class="tag">Biometrics</span></div>
+      </article>
+
+      <article class="card" data-cat="backend web">
+        <h3><span data-en="Monafiss Platform — Backend &amp; Dashboard" data-ar="منصة منافس — الباكند ولوحة التحكم">Monafiss Platform — Backend &amp; Dashboard</span>
+            <span class="badge" data-en="72 modules" data-ar="72 وحدة">72 modules</span></h3>
+        <p data-en="The system every Monafiss app runs on: a NestJS and Prisma backend of 72 modules over 105 data models, paired with a Next.js operations dashboard. Covers warehouse management, delivery zones and ETA, loyalty, abandoned carts, returns, refunds, wallets, voice calls and two AI assistants — running on Redis, Firebase and object storage, with Sentry and New Relic watching production."
+           data-ar="النظام الذي تعمل عليه كل تطبيقات منافس: خادم NestJS و Prisma بـ 72 وحدة فوق 105 نماذج بيانات، مع لوحة تحكم تشغيلية بـ Next.js. يغطي إدارة المستودعات ومناطق التوصيل ووقت الوصول المتوقّع والولاء والسلّات المتروكة والمرتجعات والاستردادات والمحافظ والمكالمات الصوتية ومساعدَي ذكاء اصطناعي — ويعمل على Redis و Firebase والتخزين السحابي، مع مراقبة Sentry و New Relic للإنتاج.">NestJS backend of 72 modules over 105 data models.</p>
+        <div class="tags"><span class="tag">NestJS</span><span class="tag">Prisma</span><span class="tag">Next.js</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span></div>
       </article>
 
       <article class="card" data-cat="backend">
         <h3><span data-en="ERP Synchronization Service" data-ar="خدمة مزامنة ERP">ERP Synchronization Service</span></h3>
-        <p data-en="Automated service that pulls data from the company ERP and pushes it to the mobile apps on a configurable schedule — syncing offers, prices and inventory, and automatically enabling or disabling promotions."
-           data-ar="خدمة آلية تسحب البيانات من نظام ERP وتدفعها للتطبيقات وفق جدول قابل للضبط — تزامن العروض والأسعار والمخزون وتفعّل أو توقف العروض تلقائياً.">Automated ERP data synchronization.</p>
-        <div class="tags"><span class="tag">NestJS</span><span class="tag">SQL</span><span class="tag">Scheduled Jobs</span></div>
+        <p data-en="Moves offers, prices and inventory from the company's SQL Server ERP into the apps' PostgreSQL on a configurable schedule, per branch. A Next.js middle layer validates every batch against business rules, flags dangerous changes for manual review before they reach customers, and switches promotions on and off automatically."
+           data-ar="ينقل العروض والأسعار والمخزون من نظام ERP على SQL Server إلى PostgreSQL الخاص بالتطبيقات وفق جدول قابل للضبط ولكل فرع. طبقة وسيطة بـ Next.js تتحقق من كل دفعة مقابل قواعد العمل، وتعلّم التغيّرات الخطيرة للمراجعة اليدوية قبل وصولها للعملاء، وتفعّل العروض وتوقفها تلقائياً.">SQL Server to PostgreSQL sync with guarded review.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span></div>
       </article>
 
-      <article class="card" data-cat="backend web">
-        <h3><span data-en="HR &amp; Payroll Module" data-ar="وحدة الموارد البشرية والرواتب">HR &amp; Payroll Module</span></h3>
-        <p data-en="Calculates employee salaries and manages leave balances, built into the company's internal platform alongside in-app messaging, fleet management and a reporting suite."
-           data-ar="تحتسب رواتب الموظفين وتدير أرصدة الإجازات، مبنية ضمن منصة الشركة الداخلية إلى جانب المراسلة وإدارة الأسطول ومجموعة التقارير.">Salary calculation and leave balance management.</p>
-        <div class="tags"><span class="tag">Laravel</span><span class="tag">Filament</span><span class="tag">MySQL</span></div>
+      <article class="card" data-cat="backend">
+        <h3><span data-en="Accounting, HR &amp; Payroll System" data-ar="نظام المحاسبة والموارد البشرية والرواتب">Accounting, HR &amp; Payroll System</span></h3>
+        <p data-en="A four-service system — accounting, HR, reporting and AI — covering the sales and purchase cycle, stock movements posted to the general ledger, a pricing engine and payroll. Reads attendance straight off ZKTeco fingerprint terminals, and ships with Docker Compose, an API gateway and Prometheus monitoring."
+           data-ar="نظام من أربع خدمات — محاسبة وموارد بشرية وتقارير وذكاء اصطناعي — يغطي دورة المبيعات والمشتريات، وحركات المخزون المرحّلة إلى دفتر الأستاذ العام، ومحرّك تسعير، ونظام رواتب. يقرأ الحضور مباشرة من أجهزة البصمة ZKTeco، ويأتي مع Docker Compose وبوابة واجهات ومراقبة Prometheus.">Four services covering accounting, HR, reporting and AI.</p>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">ZKTeco</span><span class="tag">Prometheus</span></div>
       </article>
 
-      <article class="card" data-cat="mobile">
-        <h3><span data-en="Roeya — Reporting App" data-ar="رؤية — تطبيق التقارير">Roeya — Reporting App</span>
-            <span class="badge" data-en="In progress" data-ar="قيد التطوير">In progress</span></h3>
-        <p data-en="Mobile reporting app that surfaces Monafiss Market analytics so managers can review business performance anytime, without opening a laptop."
-           data-ar="تطبيق تقارير يعرض تحليلات منافس ماركت ليراجع المدراء أداء العمل في أي وقت دون الحاجة لفتح حاسوب.">Mobile analytics for managers.</p>
-        <div class="tags"><span class="tag">Flutter</span><span class="tag">Charts</span><span class="tag">REST API</span></div>
+      <article class="card" data-cat="mobile backend web">
+        <h3><span data-en="Lahza Etar — Retail Platform" data-ar="لحظة إطار — منصة تجارة التجزئة">Lahza Etar — Retail Platform</span>
+            <span class="badge" data-en="In Apple review" data-ar="قيد مراجعة Apple">In Apple review</span></h3>
+        <p data-en="A complete retail e-commerce platform built end to end: a NestJS API of 24 modules over 72 data models, a React dashboard where every menu page is built, and a Flutter customer app for browsing, basket and order tracking. Includes a finance module with landed-cost shipments, product scorecards and VAT, plus geospatial delivery zones on PostGIS."
+           data-ar="منصة تجارة تجزئة متكاملة مبنية من الصفر: واجهة NestJS بـ 24 وحدة فوق 72 نموذج بيانات، ولوحة تحكم React كل صفحة في قائمتها مبنية، وتطبيق عملاء بـ Flutter للتصفّح والسلة وتتبّع الطلب. تتضمن وحدة مالية بشحنات التكلفة الواصلة وبطاقات أداء المنتجات وضريبة القيمة المضافة، ومناطق توصيل جغرافية على PostGIS.">Retail platform: NestJS API, React dashboard, Flutter app.</p>
+        <div class="tags"><span class="tag">NestJS 12</span><span class="tag">Prisma 7</span><span class="tag">React 19</span><span class="tag">Flutter</span><span class="tag">PostGIS</span></div>
+      </article>
+
+      <article class="card" data-cat="ai backend">
+        <h3><span data-en="Rona — AI Personal Assistant" data-ar="رونا — السكرتيرة الذكية">Rona — AI Personal Assistant</span>
+            <span class="badge" data-en="TestFlight" data-ar="TestFlight">TestFlight</span></h3>
+        <p data-en="An autonomous assistant that lives inside WhatsApp and answers in plain Arabic, with an iOS companion app on TestFlight. It does not just reply — it acts: books appointments, answers email, scans job listings against my criteria and drafts proposals for freelance work. Because it acts, it sits on a permission engine of 100 policies that decides what it may do alone and what needs my approval. 21k lines of TypeScript, 83 tools, 42 security tests. The rule it runs on: Rona writes, Rona never sends — anything leaving for a third party waits for me, and untrusted text is read by a tool-less model so a prompt hidden in a job ad can spoil a summary but never send mail in my name."
+           data-ar="مساعدة ذاتية تعيش داخل الواتساب وتردّ بالعربية الدارجة، مع تطبيق آيفون مرافق على TestFlight. لا تكتفي بالردّ بل تتصرّف: تحجز المواعيد، وتردّ على البريد، وتمسح إعلانات الوظائف وفق شروطي، وتكتب عروضاً للعمل الحر. ولأنها تتصرّف، بُني تحتها محرّك صلاحيات من 100 سياسة يقرّر ما تفعله وحدها وما يحتاج موافقتي. 21 ألف سطر TypeScript، و83 أداة، و42 اختباراً أمنياً. القاعدة التي تحكمها: رونا تكتب ولا ترسل — كل ما يخرج لطرف خارجي ينتظرني، والنص غير الموثوق يُقرأ بنموذج بلا أدوات، فتعليمة مخفية في إعلان وظيفة قد تفسد ملخّصاً لكنها لا ترسل بريداً باسمي.">Autonomous WhatsApp assistant with a 100-policy permission engine.</p>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">LLM Agents</span><span class="tag">Tool Calling</span><span class="tag">WhatsApp API</span><span class="tag">iOS</span></div>
       </article>
 
       <article class="card" data-cat="mobile backend">
