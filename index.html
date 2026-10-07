@@ -5,9 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abdulsalam Fawzi Alfarra — Software Engineer</title>
 <meta name="description" content="Software Engineer · Mobile &amp; Backend Developer. Flutter, NestJS, React and SQL. Production apps on the App Store and Google Play." />
+<link rel="canonical" href="https://abdulsalamfawzi22.github.io/" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <meta property="og:title" content="Abdulsalam Fawzi Alfarra — Software Engineer" />
 <meta property="og:description" content="Flutter · NestJS · React · SQL — production mobile apps and the backend systems behind them." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://abdulsalamfawzi22.github.io/" />
+<!-- absolute URL and a raster file: LinkedIn and WhatsApp ignore relative paths and SVG -->
+<meta property="og:image" content="https://abdulsalamfawzi22.github.io/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://abdulsalamfawzi22.github.io/assets/og.png" />
+<meta name="theme-color" content="#0d1117" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -190,12 +200,65 @@ textarea{resize:vertical;min-height:112px}
 
 footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
 
+/* ---------- screenshot strip ---------- */
+.shots{display:flex;gap:10px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:thin}
+.shots img{
+  height:230px;width:auto;border-radius:10px;border:1px solid var(--border);
+  cursor:zoom-in;flex:none;background:var(--surface-2);
+}
+.shots img:hover{border-color:var(--accent)}
+.app-icon{width:30px;height:30px;border-radius:7px;vertical-align:middle;border:1px solid var(--border)}
+
+/* ---------- lightbox ---------- */
+#lb{
+  position:fixed;inset:0;z-index:100;background:rgba(2,6,12,.92);
+  display:grid;place-items:center;padding:24px;
+}
+#lb img{max-width:min(92vw,520px);max-height:88vh;border-radius:12px}
+#lb button{
+  position:absolute;top:16px;inset-inline-end:16px;background:#ffffff1a;color:#fff;
+  border:1px solid #ffffff33;border-radius:9px;width:40px;height:40px;font-size:20px;cursor:pointer;
+}
+
+/* ---------- store badges ---------- */
+.store-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.store-badge{
+  display:inline-flex;align-items:center;gap:9px;padding:8px 15px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border);color:var(--text);
+  font-size:.82rem;font-weight:600;line-height:1.25;
+}
+.store-badge:hover{background:var(--surface-2);border-color:var(--accent);text-decoration:none}
+.store-badge small{display:block;font-size:.66rem;font-weight:500;color:var(--muted)}
+.store-badge svg{width:19px;height:19px;flex:none;fill:currentColor}
+
+/* ---------- scroll reveal ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- mobile nav ---------- */
+#menuBtn{display:none}
 @media (max-width:820px){
   .hero-grid{grid-template-columns:1fr;gap:26px}
   .avatar{width:120px;height:120px;order:-1}
   .contact-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
   .job .when{margin-inline-start:0}
+  #menuBtn{display:inline-flex;margin-inline-start:auto}
+  /* the links become a drop-down panel instead of vanishing */
+  .nav-links{
+    position:absolute;inset-inline:0;top:100%;flex-direction:column;gap:0;
+    background:var(--bg);border-bottom:1px solid var(--border);padding:8px 16px 14px;
+    box-shadow:var(--shadow);
+  }
+  .nav-links[hidden]{display:none}
+  .nav-links a{padding:11px 6px;font-size:.95rem;border-radius:0}
+  .nav-links a + a{border-top:1px solid var(--border)}
+  header.nav{position:sticky}
+  .nav-in{position:relative;flex-wrap:wrap}
+  .shots img{height:190px}
 }
 [hidden]{display:none !important}
 </style>
@@ -205,7 +268,8 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
 <header class="nav">
   <div class="wrap nav-in">
     <span class="brand" data-en="Abdulsalam Alfarra" data-ar="عبدالسلام الفرا">Abdulsalam Alfarra</span>
-    <nav class="nav-links">
+    <button class="icon-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">☰</button>
+    <nav class="nav-links" id="navLinks">
       <a href="#about"      data-en="About"        data-ar="نبذة">About</a>
       <a href="#experience" data-en="Experience"   data-ar="الخبرة">Experience</a>
       <a href="#projects"   data-en="Projects"     data-ar="المشاريع">Projects</a>
@@ -236,6 +300,16 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
         <a class="btn btn-primary" href="assets/Abdulsalam_Fawzi_CV.pdf" download
            data-en="↓ Download CV" data-ar="↓ تحميل السيرة الذاتية">↓ Download CV</a>
         <a class="btn btn-ghost" href="#contact" data-en="Get in touch" data-ar="تواصل معي">Get in touch</a>
+      </div>
+      <div class="store-row">
+        <a class="store-badge" href="https://apps.apple.com/sa/app/id6771451344" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.8c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.8.7c1.2 0 1.9-1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.4s-2.3-.9-2.3-3.4zM14.2 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg>
+          <span><small data-en="Download on the" data-ar="حمّله من">Download on the</small>App Store</span>
+        </a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.monafiss.market" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.4c-.3.3-.5.8-.5 1.4v16.4c0 .6.2 1.1.5 1.4l.1.1 9.2-9.2v-.2L3.6 2.4zM16.1 15.6l-3.1-3.1v-.2l3.1-3.1.1.1 3.6 2.1c1 .6 1 1.6 0 2.2l-3.7 2zM15.9 15.8L12.8 12.6 3.6 21.8c.3.4.9.4 1.5 0l10.8-6zM15.9 8.2L5.1 2.2c-.6-.4-1.2-.3-1.5 0l9.2 9.2 3.1-3.2z"/></svg>
+          <span><small data-en="Get it on" data-ar="احصل عليه من">Get it on</small>Google Play</span>
+        </a>
       </div>
       <div class="facts">
         <span>📍 <em data-en="Jeddah, Saudi Arabia" data-ar="جدة، السعودية">Jeddah, Saudi Arabia</em></span>
@@ -337,6 +411,12 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
             <span class="badge live" data-en="App Store · Google Play" data-ar="App Store · Google Play">App Store · Google Play</span></h3>
         <p data-en="On-demand grocery delivery in 35–50 minutes, live on both stores and now at build 151. Thirty-eight feature modules including a VR shopping aisle, an AI shopping assistant that parses written lists, in-app voice and video calls over LiveKit, shared baskets and family accounts, a loyalty programme, wallet with automatic refunds, stories and a digital magazine — with HyperPay checkout (Mada, Visa, Apple Pay) and live driver tracking on the map."
            data-ar="توصيل بقالة عند الطلب خلال 35–50 دقيقة، منشور على المتجرين ووصل للبناء رقم 151. ثمانٍ وثلاثون وحدة ميزة تشمل ممر تسوّق بالواقع الافتراضي، ومساعد ذكاء اصطناعي يحلّل قوائم التسوّق المكتوبة، ومكالمات صوتية ومرئية داخل التطبيق عبر LiveKit، وسلّات مشتركة وحسابات عائلية، وبرنامج ولاء، ومحفظة باسترداد آلي، وقصص ومجلة رقمية — مع دفع HyperPay (مدى، فيزا، Apple Pay) وتتبّع مباشر للسائق على الخريطة.">On-demand grocery delivery with 38 feature modules.</p>
+        <div class="shots">
+          <img src="assets/shots/market-1.jpg" alt="Monafiss Market — launch screen" loading="lazy" width="277" height="600" />
+          <img src="assets/shots/market-2.jpg" alt="Monafiss Market — storefront" loading="lazy" width="277" height="600" />
+          <img src="assets/shots/market-3.jpg" alt="Monafiss Market — product browsing" loading="lazy" width="277" height="600" />
+          <img src="assets/shots/market-4.jpg" alt="Monafiss Market — checkout" loading="lazy" width="277" height="600" />
+        </div>
         <div class="tags"><span class="tag">Flutter</span><span class="tag">LiveKit</span><span class="tag">Socket.IO</span><span class="tag">HyperPay</span><span class="tag">Firebase</span></div>
         <div class="card-links">
           <a href="https://apps.apple.com/sa/app/id6771451344" target="_blank" rel="noopener">App Store ↗</a>
@@ -349,6 +429,11 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
             <span class="badge live" data-en="Published" data-ar="منشور">Published</span></h3>
         <p data-en="The courier app behind the delivery fleet: order dispatch, live GPS tracking, barcode scanning, proof-of-delivery photos, return pickups and a built-in earnings view, with in-app calls and realtime order updates over sockets."
            data-ar="تطبيق المندوب خلف أسطول التوصيل: توزيع الطلبات، وتتبّع GPS مباشر، ومسح الباركود، وصور إثبات التسليم، واستلام المرتجعات، وشاشة أرباح مدمجة، مع مكالمات داخل التطبيق وتحديثات لحظية للطلبات عبر السوكِت.">Courier app with dispatch, GPS, scanning and earnings.</p>
+        <div class="shots">
+          <img src="assets/shots/driver-1.jpg" alt="Monafis Driver — order dispatch" loading="lazy" width="277" height="600" />
+          <img src="assets/shots/driver-2.jpg" alt="Monafis Driver — live tracking" loading="lazy" width="277" height="600" />
+          <img src="assets/shots/driver-3.jpg" alt="Monafis Driver — delivery proof" loading="lazy" width="277" height="600" />
+        </div>
         <div class="tags"><span class="tag">Flutter</span><span class="tag">GPS</span><span class="tag">Barcode</span><span class="tag">Socket.IO</span></div>
         <div class="card-links">
           <a href="https://apps.apple.com/sa/app/monafis-driver/id6771781550" target="_blank" rel="noopener">App Store ↗</a>
@@ -667,6 +752,74 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
 
   applyTheme(read("theme"));
 
+  /* ---------- mobile nav ---------- */
+  var menuBtn = document.getElementById("menuBtn");
+  var navLinks = document.getElementById("navLinks");
+
+  function isMobile(){ return window.matchMedia("(max-width: 820px)").matches; }
+  function setMenu(open){
+    navLinks.hidden = isMobile() ? !open : false;
+    menuBtn.setAttribute("aria-expanded", String(!!open && isMobile()));
+    menuBtn.textContent = open && isMobile() ? "✕" : "☰";
+  }
+  setMenu(false);
+
+  menuBtn.addEventListener("click", function(){
+    setMenu(navLinks.hidden);
+  });
+  navLinks.addEventListener("click", function(e){
+    if (e.target.tagName === "A" && isMobile()) setMenu(false);
+  });
+  // crossing the breakpoint must not leave the panel stuck hidden on desktop
+  window.addEventListener("resize", function(){ setMenu(false); });
+
+  /* ---------- screenshot lightbox ---------- */
+  var lb = null;
+  function closeLb(){
+    if (lb){ lb.remove(); lb = null; document.body.style.overflow = ""; }
+  }
+  document.addEventListener("click", function(e){
+    var img = e.target.closest ? e.target.closest(".shots img") : null;
+    if (!img) return;
+    closeLb();
+    lb = document.createElement("div");
+    lb.id = "lb";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-modal", "true");
+    var big = document.createElement("img");
+    big.src = img.src;
+    big.alt = img.alt;
+    var x = document.createElement("button");
+    x.type = "button";
+    x.textContent = "✕";
+    x.setAttribute("aria-label", "Close");
+    lb.appendChild(big);
+    lb.appendChild(x);
+    lb.addEventListener("click", function(ev){
+      if (ev.target !== big) closeLb();
+    });
+    document.body.appendChild(lb);
+    document.body.style.overflow = "hidden";
+    x.focus();
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") closeLb();
+  });
+
+  /* ---------- scroll reveal ---------- */
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+    var targets = document.querySelectorAll("section .stat, section .card, section .job, section .skill-box, section .cert");
+    for (var r = 0; r < targets.length; r++){
+      targets[r].classList.add("reveal");
+      io.observe(targets[r]);
+    }
+  }
+
   /* ---------- project filters ---------- */
   var chips = document.querySelectorAll(".chip[data-filter]");
   var cards = document.querySelectorAll("#projectGrid .card");
@@ -679,7 +832,10 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
       }
       for (var k = 0; k < cards.length; k++){
         var cat = cards[k].getAttribute("data-cat") || "";
-        cards[k].hidden = !(want === "all" || cat.indexOf(want) !== -1);
+        var show = want === "all" || cat.indexOf(want) !== -1;
+        cards[k].hidden = !show;
+        // a card hidden while off-screen never trips the observer, so reveal it here
+        if (show) cards[k].classList.add("in");
       }
     });
   }
@@ -741,5 +897,11 @@ footer{padding:30px 0;color:var(--muted);font-size:.86rem;text-align:center}
   });
 })();
 </script>
+
+<!-- Visitor counts: GoatCounter is free, cookie-less and needs no consent banner.
+     Create the site at https://www.goatcounter.com, then put your code in place
+     of YOURCODE below. Until then this script 404s harmlessly and nothing breaks. -->
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
