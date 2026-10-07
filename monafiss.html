@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Monafiss Platform — Case Study</title>
+<meta name="description" content="How one NestJS backend of 72 modules over 105 data models serves four Flutter apps, an operations dashboard and a legacy ERP." />
+<link rel="canonical" href="https://abdulsalamfawzi22.github.io/monafiss.html" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="Monafiss Platform — Case Study" />
+<meta property="og:description" content="One backend, four apps and a legacy ERP: the architecture behind a grocery-delivery operation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abdulsalamfawzi22.github.io/monafiss.html" />
+<meta property="og:image" content="https://abdulsalamfawzi22.github.io/assets/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://abdulsalamfawzi22.github.io/assets/og.png" />
+<meta name="theme-color" content="#0d1117" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#ffffff; --surface:#f6f8fa; --surface-2:#eef2f6; --border:#d8dee6;
+  --text:#11181c; --muted:#5b6b7a; --accent:#1769aa; --accent-soft:#e3f0fa;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+  --radius:14px;
+  --font:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+  --font-ar:'IBM Plex Sans Arabic','Inter',system-ui,sans-serif;
+  --diagram-ink:#11181c; --diagram-line:#9bacbd;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1117; --surface:#161b22; --surface-2:#1c232c; --border:#2b3440;
+    --text:#e6edf3; --muted:#9bacbd; --accent:#58a6ff; --accent-soft:#132b45;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --diagram-ink:#e6edf3; --diagram-line:#5b6b7a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --surface:#161b22; --surface-2:#1c232c; --border:#2b3440;
+  --text:#e6edf3; --muted:#9bacbd; --accent:#58a6ff; --accent-soft:#132b45;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --diagram-ink:#e6edf3; --diagram-line:#5b6b7a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+html[dir="rtl"] body{font-family:var(--font-ar)}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+header.nav{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
+}
+.nav-in{display:flex;align-items:center;gap:10px;min-height:58px;max-width:860px;margin:0 auto;padding:0 16px}
+.back{font-weight:600;font-size:.9rem}
+.icon-btn{
+  background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:9px;
+  padding:7px 11px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;
+}
+.icon-btn:hover{background:var(--surface-2)}
+.spacer{margin-inline-start:auto}
+
+.hero{padding:52px 0 34px}
+.kicker{
+  display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-soft);padding:5px 11px;border-radius:999px;margin-bottom:14px;
+}
+h1{font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.15;margin:0 0 12px;letter-spacing:-.03em;font-weight:800}
+.lede{font-size:1.08rem;color:var(--muted);margin:0}
+
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(136px,1fr));gap:12px;margin:30px 0 8px}
+.fig{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:15px}
+.fig b{display:block;font-size:1.6rem;line-height:1.1;letter-spacing:-.02em}
+.fig small{color:var(--muted);font-size:.8rem}
+
+section{padding:34px 0;border-top:1px solid var(--border)}
+h2{font-size:1.35rem;margin:0 0 14px;letter-spacing:-.02em;font-weight:700}
+h3{font-size:1.02rem;margin:24px 0 8px;font-weight:700}
+p{margin:0 0 14px}
+ul{margin:0 0 14px;padding-inline-start:20px;color:var(--muted)}
+li{margin-bottom:7px}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;
+  background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 5px;
+}
+.note{
+  background:var(--surface);border:1px solid var(--border);border-inline-start:3px solid var(--accent);
+  border-radius:10px;padding:14px 16px;margin:18px 0;
+}
+.note b{display:block;margin-bottom:4px}
+.note p{margin:0;color:var(--muted);font-size:.94rem}
+
+figure{margin:22px 0}
+figure svg{width:100%;height:auto;display:block}
+figcaption{color:var(--muted);font-size:.84rem;text-align:center;margin-top:10px}
+.diagram{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 12px}
+
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.93rem}
+th,td{text-align:start;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+tbody tr:last-child td{border-bottom:none}
+
+footer{padding:30px 0 44px;color:var(--muted);font-size:.86rem;text-align:center;border-top:1px solid var(--border)}
+@media (max-width:620px){ .nav-in{gap:8px} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="back" href="index.html" data-en="← Back to portfolio" data-ar="→ العودة للموقع">← Back to portfolio</a>
+    <span class="spacer"></span>
+    <button class="icon-btn" id="langBtn" type="button">العربية</button>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">🌙</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="hero">
+  <span class="kicker" data-en="Case study" data-ar="دراسة حالة">Case study</span>
+  <h1 data-en="One backend, four apps and a legacy ERP" data-ar="خادم واحد، أربعة تطبيقات، ونظام ERP قديم">One backend, four apps and a legacy ERP</h1>
+  <p class="lede"
+     data-en="Monafiss runs a grocery-delivery operation in Jeddah: customers order, pickers assemble, drivers deliver, managers watch. Four Flutter apps and a web dashboard, all on one NestJS backend — and all of it has to agree with an ERP that predates every line of it."
+     data-ar="تدير منافس عملية توصيل بقالة في جدة: العميل يطلب، والمجهّز يُعدّ، والمندوب يوصّل، والمدير يراقب. أربعة تطبيقات Flutter ولوحة تحكم ويب، كلها على خادم NestJS واحد — وكلها ملزمة بأن تتطابق مع نظام ERP أقدم من كل سطر فيها.">Four apps and a dashboard on one backend.</p>
+
+  <div class="figures">
+    <div class="fig"><b>72</b><small data-en="backend modules" data-ar="وحدة خلفية">backend modules</small></div>
+    <div class="fig"><b>105</b><small data-en="data models" data-ar="نموذج بيانات">data models</small></div>
+    <div class="fig"><b>5</b><small data-en="clients on one API" data-ar="عملاء على واجهة واحدة">clients on one API</small></div>
+    <div class="fig"><b>16</b><small data-en="scheduled jobs" data-ar="مهمة مجدولة">scheduled jobs</small></div>
+  </div>
+</div>
+
+<!-- ───────────────────────── problem ───────────────────────── -->
+<section>
+  <h2 data-en="The problem" data-ar="المشكلة">The problem</h2>
+  <p data-en="A grocery order touches four different people within an hour. The customer picks items against prices and stock that have to be right. A picker walks the aisles and scans what is actually on the shelf. A driver takes it across the city. A manager wants to know, later that evening, why margin moved."
+     data-ar="طلب البقالة الواحد يمرّ بأربعة أشخاص مختلفين خلال ساعة. العميل يختار أصنافاً بأسعار ومخزون يجب أن يكونا صحيحين. والمجهّز يمشي بين الرفوف ويمسح ما هو موجود فعلاً. والمندوب ينقله عبر المدينة. والمدير يريد أن يعرف مساءً لماذا تغيّر هامش الربح.">A grocery order touches four people within an hour.</p>
+  <p data-en="Each of those people needs a different app, but they are all looking at the same order. Build four systems and they drift apart: the driver shows delivered while the customer still sees preparing. The constraint, then, was never 'write four apps' — it was 'keep one truth and show four views of it'."
+     data-ar="كل واحد من هؤلاء يحتاج تطبيقاً مختلفاً، لكنهم جميعاً ينظرون إلى الطلب نفسه. ولو بُنيت أربعة أنظمة منفصلة لتباعدت: يظهر لدى المندوب «تم التسليم» بينما لا يزال العميل يرى «قيد التجهيز». فالقيد لم يكن يوماً «اكتب أربعة تطبيقات» — بل «احتفظ بحقيقة واحدة واعرض منها أربع نوافذ».">Four apps, one order — the constraint was keeping one truth.</p>
+</section>
+
+<!-- ───────────────────────── architecture ───────────────────────── -->
+<section>
+  <h2 data-en="The shape of the system" data-ar="شكل النظام">The shape of the system</h2>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 760 430" role="img" aria-labelledby="dgTitle dgDesc">
+      <title id="dgTitle">Monafiss platform architecture</title>
+      <desc id="dgDesc">A legacy SQL Server ERP feeds a validating sync service, which writes to PostgreSQL. A NestJS API reads that database and serves four Flutter apps and a Next.js dashboard over REST and WebSockets, with Redis carrying socket events between API instances.</desc>
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-line)"/>
+        </marker>
+        <style>
+          .bx{fill:var(--bg);stroke:var(--border);stroke-width:1.5;rx:9}
+          .bx-a{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5;rx:9}
+          /* the labels are English; without this they reorder when the page is RTL */
+          .t,.s,.lbl{direction:ltr;unicode-bidi:isolate}
+          .t{fill:var(--diagram-ink);font:600 13px Inter,sans-serif;text-anchor:middle}
+          .s{fill:var(--diagram-line);font:400 10.5px Inter,sans-serif;text-anchor:middle}
+          .ln{stroke:var(--diagram-line);stroke-width:1.5;fill:none;marker-end:url(#ar)}
+          .lbl{fill:var(--diagram-line);font:400 10px Inter,sans-serif;text-anchor:middle}
+        </style>
+      </defs>
+
+      <!-- row 1: ERP -->
+      <rect class="bx" x="40" y="20" width="180" height="52"/>
+      <text class="t" x="130" y="42">Legacy ERP</text>
+      <text class="s" x="130" y="58">SQL Server · on-prem LAN</text>
+
+      <!-- row 2: sync -->
+      <rect class="bx-a" x="40" y="118" width="180" height="62"/>
+      <text class="t" x="130" y="140">Sync service</text>
+      <text class="s" x="130" y="156">Next.js · validates</text>
+      <text class="s" x="130" y="170">holds risky diffs</text>
+
+      <path class="ln" d="M130 72 L130 112"/>
+      <text class="lbl" x="178" y="98">pull</text>
+
+      <!-- row 3: postgres -->
+      <rect class="bx" x="40" y="226" width="180" height="52"/>
+      <text class="t" x="130" y="248">PostgreSQL</text>
+      <text class="s" x="130" y="264">105 Prisma models</text>
+      <path class="ln" d="M130 180 L130 220"/>
+
+      <!-- API -->
+      <rect class="bx-a" x="290" y="178" width="180" height="100"/>
+      <text class="t" x="380" y="206">NestJS API</text>
+      <text class="s" x="380" y="224">72 modules</text>
+      <text class="s" x="380" y="239">clustered, all cores</text>
+      <text class="s" x="380" y="254">16 scheduled jobs</text>
+      <path class="ln" d="M220 252 L284 236"/>
+
+      <!-- redis -->
+      <rect class="bx" x="290" y="312" width="180" height="50"/>
+      <text class="t" x="380" y="333">Redis</text>
+      <text class="s" x="380" y="349">socket fan-out · cache</text>
+      <path class="ln" d="M380 278 L380 306"/>
+
+      <!-- clients -->
+      <rect class="bx" x="540" y="20" width="180" height="46"/>
+      <text class="t" x="630" y="40">Customer app</text>
+      <text class="s" x="630" y="55">Flutter</text>
+
+      <rect class="bx" x="540" y="82" width="180" height="46"/>
+      <text class="t" x="630" y="102">Driver app</text>
+      <text class="s" x="630" y="117">Flutter</text>
+
+      <rect class="bx" x="540" y="144" width="180" height="46"/>
+      <text class="t" x="630" y="164">Picker app</text>
+      <text class="s" x="630" y="179">Flutter</text>
+
+      <rect class="bx" x="540" y="206" width="180" height="46"/>
+      <text class="t" x="630" y="226">Manager app</text>
+      <text class="s" x="630" y="241">Flutter · Roeya</text>
+
+      <rect class="bx" x="540" y="268" width="180" height="46"/>
+      <text class="t" x="630" y="288">Ops dashboard</text>
+      <text class="s" x="630" y="303">Next.js</text>
+
+      <path class="ln" d="M470 206 C508 196 508 54 534 44"/>
+      <path class="ln" d="M470 212 C508 206 508 112 534 105"/>
+      <path class="ln" d="M470 222 C508 220 508 172 534 167"/>
+      <path class="ln" d="M470 240 C508 240 508 232 534 229"/>
+      <path class="ln" d="M470 252 C508 262 508 288 534 291"/>
+      <text class="lbl" x="502" y="140">REST + WebSocket</text>
+    </svg>
+    <figcaption data-en="The ERP stays the source of truth for price and stock; everything downstream is a managed copy."
+                data-ar="يبقى نظام ERP مصدر الحقيقة للسعر والمخزون، وكل ما بعده نسخة مُدارة منه.">The ERP stays the source of truth.</figcaption>
+  </figure>
+
+  <p data-en="One API serves all five clients. The apps differ in what they are allowed to see and do, not in where their data comes from — so an order moving from picking to delivery is one state change, not four systems agreeing to agree."
+     data-ar="واجهة واحدة تخدم العملاء الخمسة. تختلف التطبيقات فيما يُسمح لها برؤيته وفعله، لا في مصدر بياناتها — فانتقال الطلب من التجهيز إلى التوصيل تغيّرُ حالةٍ واحد، لا أربعة أنظمة تتفق على أن تتفق.">One API, five clients, one state change.</p>
+</section>
+
+<!-- ───────────────────────── decisions ───────────────────────── -->
+<section>
+  <h2 data-en="Three decisions worth defending" data-ar="ثلاثة قرارات تستحق الدفاع عنها">Three decisions worth defending</h2>
+
+  <h3 data-en="1. The ERP is upstream, and it is not negotiable" data-ar="١. نظام ERP هو المنبع، وهذا غير قابل للتفاوض">1. The ERP is upstream, and it is not negotiable</h3>
+  <p data-en="Price and stock live in the company's SQL Server ERP, on the office LAN. The tempting move is to let the apps write prices too. That ends with two systems both convinced they are right, and a customer charged the wrong amount."
+     data-ar="السعر والمخزون يعيشان في نظام ERP على SQL Server داخل شبكة المكتب. والإغراء هنا أن ندع التطبيقات تكتب الأسعار أيضاً — وهذا ينتهي بنظامين كلاهما مقتنع بأنه المحق، وعميل دُفع منه مبلغ خاطئ.">Price and stock stay upstream in the ERP.</p>
+  <p data-en="So the flow is one-way. A Next.js service pulls from the ERP on a per-branch schedule, and PostgreSQL holds a managed copy the apps read. Nothing downstream invents a price."
+     data-ar="فالتدفّق باتجاه واحد. خدمة Next.js تسحب من ERP وفق جدول لكل فرع، وتحتفظ PostgreSQL بنسخة مُدارة تقرأ منها التطبيقات. ولا شيء بعدها يخترع سعراً.">The flow is one-way, by design.</p>
+
+  <div class="note">
+    <b data-en="The gate that matters" data-ar="البوابة التي تهمّ">The gate that matters</b>
+    <p data-en="A sync that applies whatever it is given is a loaded gun. One bad ERP export can zero a thousand prices before anyone notices. Every batch is validated against business rules first, and changes that look dangerous are held for a human to approve before they reach a customer's screen. It costs a few minutes of delay on edge cases and removes a whole class of incident."
+       data-ar="المزامنة التي تطبّق ما يُعطى لها مسدّس محشو. تصدير ERP واحد خاطئ قد يصفّر ألف سعر قبل أن ينتبه أحد. لذلك تُفحص كل دفعة مقابل قواعد العمل أولاً، وتُحتجز التغيّرات التي تبدو خطيرة ليوافق عليها إنسان قبل أن تصل شاشة العميل. تكلفتها دقائق تأخير في الحالات الحدّية، ومكسبها إلغاء صنف كامل من الحوادث.">Dangerous diffs wait for a human.</p>
+  </div>
+
+  <h3 data-en="2. Realtime had to survive more than one process" data-ar="٢. اللحظية كان عليها أن تنجو من أكثر من عملية واحدة">2. Realtime had to survive more than one process</h3>
+  <p data-en="Live driver tracking and order status are WebSocket traffic. That is easy with one Node process and quietly broken with several: a driver's location arrives at instance A while the customer watching it is connected to instance B, and the map simply stops moving."
+     data-ar="تتبّع المندوب المباشر وحالة الطلب حركة WebSocket. وهذا سهل مع عملية Node واحدة، ومكسور بصمت مع عدة عمليات: موقع المندوب يصل إلى النسخة أ بينما العميل الذي يتابعه متصل بالنسخة ب، فتتوقف الخريطة عن الحركة ببساطة.">Sockets break quietly across processes.</p>
+  <p data-en="The API runs clustered across every CPU core, so a crashed worker costs one worker rather than the service. Redis carries socket events between those workers, which keeps the map moving no matter which process a client landed on."
+     data-ar="تعمل الواجهة بنمط عنقودي على كل أنوية المعالج، فانهيار عامل واحد يكلّف عاملاً لا الخدمة كلها. وينقل Redis أحداث السوكِت بين هؤلاء العمّال، فتبقى الخريطة تتحرك أياً كانت العملية التي حطّ عليها العميل.">Clustered API, Redis fan-out between workers.</p>
+
+  <h3 data-en="3. Modules drawn around the business, not the tables" data-ar="٣. وحدات مرسومة حول العمل لا حول الجداول">3. Modules drawn around the business, not the tables</h3>
+  <p data-en="Seventy-two modules sounds like sprawl until you read the names: returns, refund requests and return pickups are three of them, because in this operation they are three different jobs owned by three different people. Warehouse management is the largest single module in the codebase — it earned that size."
+     data-ar="اثنتان وسبعون وحدة تبدو تضخّماً حتى تقرأ الأسماء: المرتجعات وطلبات الاسترداد واستلام المرتجعات ثلاثُ وحدات منها، لأنها في هذه العملية ثلاثة أعمال مختلفة يملكها ثلاثة أشخاص مختلفون. وإدارة المستودعات أكبر وحدة منفردة في الكود — وقد استحقّت حجمها.">Modules follow the operation, not the schema.</p>
+  <p data-en="The test is not module count. It is whether a new rule about refunds lands in one place."
+     data-ar="المعيار ليس عدد الوحدات، بل هل تهبط قاعدة جديدة عن الاسترداد في مكان واحد.">The test is where a new rule lands.</p>
+</section>
+
+<!-- ───────────────────────── stack ───────────────────────── -->
+<section>
+  <h2 data-en="What runs it" data-ar="ما الذي يشغّله">What runs it</h2>
+  <table>
+    <thead><tr>
+      <th data-en="Layer" data-ar="الطبقة">Layer</th>
+      <th data-en="Choice" data-ar="الاختيار">Choice</th>
+      <th data-en="Why" data-ar="السبب">Why</th>
+    </tr></thead>
+    <tbody>
+      <tr><td data-en="API" data-ar="الواجهة">API</td><td><code>NestJS</code> <code>Prisma</code></td>
+          <td data-en="Module boundaries the framework enforces, and typed access to 105 models." data-ar="حدود وحدات يفرضها الإطار نفسه، ووصول مُنمَّط إلى 105 نماذج.">Enforced boundaries, typed data access.</td></tr>
+      <tr><td data-en="Database" data-ar="قاعدة البيانات">Database</td><td><code>PostgreSQL</code></td>
+          <td data-en="Money and stock need real transactions and constraints." data-ar="المال والمخزون يحتاجان معاملات وقيوداً حقيقية.">Transactions and constraints.</td></tr>
+      <tr><td data-en="Realtime" data-ar="اللحظية">Realtime</td><td><code>Socket.IO</code> <code>Redis</code></td>
+          <td data-en="Events reach the right client across clustered workers." data-ar="تصل الأحداث للعميل الصحيح عبر العمّال العنقوديين.">Events cross worker boundaries.</td></tr>
+      <tr><td data-en="Calls" data-ar="المكالمات">Calls</td><td><code>LiveKit</code></td>
+          <td data-en="A driver at the door should not have to leave the app to ask which gate." data-ar="المندوب عند الباب لا ينبغي أن يغادر التطبيق ليسأل عن أي بوابة.">In-app voice without leaving the flow.</td></tr>
+      <tr><td data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</td><td><code>Next.js</code> <code>Leaflet</code> <code>Recharts</code></td>
+          <td data-en="Operations staff live on maps and charts." data-ar="فريق التشغيل يعيش على الخرائط والرسوم.">Maps and charts, all day.</td></tr>
+      <tr><td data-en="Watching it" data-ar="مراقبته">Watching it</td><td><code>Sentry</code> <code>New Relic</code> <code>Pino</code></td>
+          <td data-en="A delivery platform fails in public; you want to know before the customer calls." data-ar="منصة التوصيل تفشل أمام الناس، والأفضل أن تعرف قبل أن يتصل العميل.">Know before the customer calls.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ───────────────────────── outcome ───────────────────────── -->
+<section>
+  <h2 data-en="Where it stands" data-ar="أين وصل">Where it stands</h2>
+  <ul>
+    <li data-en="Two of the apps are published on the App Store and Google Play and ship weekly; the customer app is past build 151."
+        data-ar="تطبيقان منشوران على App Store و Google Play ويصدران تحديثات أسبوعية، وتطبيق العميل تجاوز البناء 151.">Two apps published, shipping weekly.</li>
+    <li data-en="Offers, prices and inventory reach the apps on their own, several times a day, per branch — with risky changes still waiting on a person."
+        data-ar="تصل العروض والأسعار والمخزون إلى التطبيقات تلقائياً عدة مرات يومياً ولكل فرع، مع بقاء التغيّرات الخطيرة بانتظار إنسان.">Catalogue syncs itself, with a human gate.</li>
+    <li data-en="Managers read the same numbers from their phones that the dashboard shows, through the reporting app."
+        data-ar="يقرأ المدراء من هواتفهم الأرقام نفسها التي تعرضها لوحة التحكم، عبر تطبيق التقارير.">Managers read the same numbers from a phone.</li>
+    <li data-en="An ERP migration off the legacy system is underway — which the one-way sync boundary is what makes survivable."
+        data-ar="ويجري ترحيل ERP عن النظام القديم — وحدود المزامنة أحادية الاتجاه هي ما يجعل ذلك محتملاً.">A live ERP migration, made survivable by that boundary.</li>
+  </ul>
+
+  <div class="note">
+    <b data-en="What I would do differently" data-ar="ما كنت سأفعله بشكل مختلف">What I would do differently</b>
+    <p data-en="The sync service grew into its own application before it was treated like one. It validates, queues, holds diffs for review and reports — and for a while it did all that without the observability the main API already had. Giving a piece of infrastructure its own dashboard on day one is cheaper than discovering at 2am that it has been silently retrying for an hour."
+       data-ar="نمت خدمة المزامنة لتصير تطبيقاً قائماً بذاته قبل أن تُعامَل كذلك. فهي تتحقق وتصفّ وتحتجز الفروقات للمراجعة وتُبلّغ — وظلّت فترةً تفعل ذلك كله دون أدوات المراقبة التي كانت لدى الواجهة الرئيسية أصلاً. ومنحُ قطعةٍ من البنية التحتية لوحتَها الخاصة من اليوم الأول أرخص من اكتشافك الثانيةَ فجراً أنها تعيد المحاولة بصمت منذ ساعة.">Infrastructure deserves its own dashboard on day one.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0">
+      <a href="index.html" data-en="← Back to portfolio" data-ar="→ العودة للموقع">← Back to portfolio</a>
+      &nbsp;·&nbsp; <a href="https://github.com/abdulsalamfawzi22" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;·&nbsp; <a href="mailto:abdulsalam.fawzi23@gmail.com">Email</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  function read(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function write(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+  var htmlEl = document.documentElement;
+  var langBtn = document.getElementById("langBtn");
+  var themeBtn = document.getElementById("themeBtn");
+
+  function applyLang(lang){
+    var isAr = lang === "ar";
+    htmlEl.lang = isAr ? "ar" : "en";
+    htmlEl.dir  = isAr ? "rtl" : "ltr";
+    langBtn.textContent = isAr ? "English" : "العربية";
+    document.title = isAr ? "منصة منافس — دراسة حالة" : "Monafiss Platform — Case Study";
+    var nodes = document.querySelectorAll("[data-en][data-ar]");
+    for (var i = 0; i < nodes.length; i++){
+      var v = nodes[i].getAttribute(isAr ? "data-ar" : "data-en");
+      if (v !== null) nodes[i].textContent = v;
+    }
+    write("lang", lang);
+  }
+  langBtn.addEventListener("click", function(){
+    applyLang(htmlEl.lang === "ar" ? "en" : "ar");
+  });
+
+  function applyTheme(mode){
+    if (mode === "dark" || mode === "light") htmlEl.setAttribute("data-theme", mode);
+    else htmlEl.removeAttribute("data-theme");
+    var dark = mode === "dark" ||
+      (!mode && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    themeBtn.textContent = dark ? "☀️" : "🌙";
+    if (mode) write("theme", mode);
+  }
+  themeBtn.addEventListener("click", function(){
+    var isDark = htmlEl.getAttribute("data-theme") === "dark" ||
+      (!htmlEl.getAttribute("data-theme") && window.matchMedia &&
+       window.matchMedia("(prefers-color-scheme: dark)").matches);
+    applyTheme(isDark ? "light" : "dark");
+  });
+
+  // share the portfolio's stored preferences so the two pages stay in step
+  var savedLang = read("lang");
+  if (!savedLang) savedLang = (navigator.language || "en").toLowerCase().indexOf("ar") === 0 ? "ar" : "en";
+  applyLang(savedLang);
+  applyTheme(read("theme"));
+})();
+</script>
+
+<script data-goatcounter="https://abdulsalam.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
